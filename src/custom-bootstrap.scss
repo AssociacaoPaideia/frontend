@@ -1,5 +1,6 @@
 // Import custom font from Google
 @import url('https://fonts.googleapis.com/css?family=Raleway');
+@import "compass";
 
 // Override / set color variables
 $dark-blue:         #004C70;
@@ -10,7 +11,7 @@ $orange:            #E0A025;
 $paideia-green:     #86c540;
 $paideia-dark-green:#527a25;
 $paideia-purple:    #c757a1;
-
+$white:             #fff;
 // Set brand colors
 $brand-primary:     $paideia-green;
 $brand-success:     $light-blue;
