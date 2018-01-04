@@ -4,6 +4,8 @@ import Login from '@/components/Login';
 import Subscribe from '@/components/Subscribe';
 import WizardProcess from '@/components/WizardProcess';
 import BasicInfo from '@/components/BasicInfo';
+import AdditionalInfo from '@/components/AdditionalInfo';
+import SocialEco from '@/components/SocialEco';
 
 Vue.use(Router);
 
@@ -23,6 +25,16 @@ export default new Router({
           path: 'basic',
           name: 'BasicInfo',
           component: BasicInfo,
+        },
+        {
+          path: 'additional',
+          name: 'AdditionalInfo',
+          component: AdditionalInfo,
+        },
+        {
+          path: 'social',
+          name: 'SocialEco',
+          component: SocialEco,
         },
       ],
     }, {

@@ -42,8 +42,8 @@ export default {
     },
     steps() {
       return [{ name: 'Dados Basicos', href: '/login', done: (this.$route.name !== 'BasicInfo'), active: (this.$route.name === 'BasicInfo') },
-              { name: 'Dados Adicionais', href: '/login', done: false, active: false },
-              { name: 'Socioeconômico', href: '/login', done: false, active: false }];
+              { name: 'Dados Adicionais', href: '/login', done: (this.$route.name === 'SocialEco'), active: (this.$route.name === 'AdditionalInfo') },
+              { name: 'Socioeconômico', href: '/login', done: (this.$route.name === 'Confirm'), active: (this.$route.name === 'SocialEco') }];
     },
   },
   methods: {
