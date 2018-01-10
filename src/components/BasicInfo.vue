@@ -44,6 +44,9 @@
 </b-container>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
+
 export default {
   name: 'BasicInfo',
   data() {
@@ -62,7 +65,12 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(['teste3']),
     isNameValid() {
+      // eslint-disable-next-line
+      console.log(this.teste3);
+
+      this.teste1();
       return this.form.name.length > 5;
     },
     invalidNameText() {
@@ -77,6 +85,9 @@ export default {
       }
       return '';
     },
+  },
+  methods: {
+    ...mapActions(['teste1']),
   },
 };
 </script>
