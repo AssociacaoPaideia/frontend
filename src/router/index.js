@@ -6,17 +6,26 @@ import WizardProcess from '@/components/WizardProcess';
 import BasicInfo from '@/components/BasicInfo';
 import AdditionalInfo from '@/components/AdditionalInfo';
 import SocialEco from '@/components/SocialEco';
+import Signup from '@/components/Signup';
+import HeaderNav from '@/components/HeaderNav';
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
+      path: '/',
+      name: 'Página Inicial',
+      component: HeaderNav,
+    }, {
       path: '/login',
       name: 'Login',
       component: Login,
-    },
-    {
+    }, {
+      path: '/subscribe',
+      name: 'Inscrição',
+      component: Signup,
+    }, {
       path: '/subscribe',
       name: 'Subscribe',
       component: Subscribe,
