@@ -1,10 +1,9 @@
-import { teste } from './mutation-types';
+import { updateUsers } from './mutation-types';
 
 const mutations = {
-  [teste](state) {
+  [updateUsers](state, users) {
     // eslint-disable-next-line
-    state.name = state.name + 1;
-    return state.name;
+    state.users = users;
   },
 };
 

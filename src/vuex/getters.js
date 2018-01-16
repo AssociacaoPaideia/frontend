@@ -1,6 +1,6 @@
 const getters = {
-  teste3(state) {
-    return state.name;
+  users(state) {
+    return state.users;
   },
 };
 

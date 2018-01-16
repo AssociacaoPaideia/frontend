@@ -1,5 +1,8 @@
+import apolloClient from '../graphql/graphql';
+
 const state = {
-  name: 1,
+  users: [],
+  apollo: apolloClient
 };
 
 export default state;

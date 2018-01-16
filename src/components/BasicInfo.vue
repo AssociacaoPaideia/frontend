@@ -46,7 +46,6 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 
-
 export default {
   name: 'BasicInfo',
   data() {
@@ -62,15 +61,19 @@ export default {
         cpf: '',
         rg: '',
       },
+      Usuarios: {
+        id: '',
+        email: '',
+      },
     };
   },
   computed: {
-    ...mapGetters(['teste3']),
+    ...mapGetters(['users']),
     isNameValid() {
       // eslint-disable-next-line
-      console.log(this.teste3);
+      console.log(this.users);
 
-      this.teste1();
+      this.getUsers();
       return this.form.name.length > 5;
     },
     invalidNameText() {
@@ -87,7 +90,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['teste1']),
+    ...mapActions(['getUsers']),
   },
 };
 </script>
