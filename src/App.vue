@@ -1,7 +1,13 @@
 <template>
   <div id="app">
-    <head><meta name="viewport" content="width=device-width, initial-scale=1"></head>
-   <router-view/>
+    <b-container>
+      <b-row>
+        <HeaderNav/>
+      </b-row>
+      <b-row align-v='center'>
+        <router-view align-v='center'/> 
+      </b-row>
+    </b-container>
   </div>
 </template>
 

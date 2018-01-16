@@ -8,16 +8,19 @@ import AdditionalInfo from '@/components/AdditionalInfo';
 import SocialEco from '@/components/SocialEco';
 import Signup from '@/components/Signup';
 import HeaderNav from '@/components/HeaderNav';
+import Index from '@/components/Index';
 
+Vue.component('HeaderNav', HeaderNav);
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Página Inicial',
-      component: HeaderNav,
-    }, {
+      name: 'Index',
+      component: Index,
+    },
+    {
       path: '/login',
       name: 'Login',
       component: Login,

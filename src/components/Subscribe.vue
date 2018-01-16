@@ -1,10 +1,5 @@
 <template>
   <b-container>
-   <b-row align-v="start">
-      <b-col align-v="center">
-        <b-img class="logo" center src='../assets/logo-paideia.png'></b-img>
-      </b-col>
-   </b-row>
    <b-row align-v="center">
      <b-col cols='12' offset="0" sm='10'  offset-sm='1' md='8' offset-md="2"  lg='6' offset-lg="3" align-v="center">        
         <wizard-process v-on:clicked='chooseStep' :steps="steps"/>
@@ -16,8 +11,7 @@
 </b-container>
 </template>
 <script>
-import WizardProcess from '@/components/WizardProcess'
-;
+import WizardProcess from '@/components/WizardProcess';
 
 export default {
   name: 'Subscribe',

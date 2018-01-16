@@ -1,12 +1,7 @@
 <template>
  <b-container>
-   <b-row align-v='start'>
-      <b-col align-v='center'>
-        <b-img class='logo' center src='../assets/logo-paideia.png'></b-img>
-      </b-col>
-   </b-row>
    <b-row align-v='center'>
-     <b-col cols='10' offset='1'  sm='8' offset-sm='2' md='6' offset-md='3'  align-v='center'>        
+     <b-col class='container' cols='10' offset='1'  sm='8' offset-sm='2' md='6' offset-md='3'  align-v='center'>        
         <b-form class='text-white font-weight-bold login-form'  @submit='clicked' @reset='clicked' v-if='true'>
           <b-form-group id='igName'
                         label='Nome:'>
@@ -94,5 +89,8 @@ export default {
   button {
       width: 100%
   }
+}
+.container{
+  margin-top: 30px;
 }
 </style>
