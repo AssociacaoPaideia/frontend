@@ -1,21 +1,19 @@
 <template>
     <b-container>
-      <b-row align-v='start'>
-        <b-col align-v='center'>
-          <center>
-            <b-img class='logo'  src='../assets/logo-paideia.png'/>
-          </center>
-        </b-col>
+      <b-row align-v="center">
         <b-col>
+            <b-img left fluid-grow src='../assets/logo-focus-grande.png'/>
+        </b-col>
+        <b-col cols="8">
           <center>
-            <b-img class='logo' src='../assets/logo_focus.jpg'/>            
+            <b-img align-v='center' src='../assets/logo-paideia-grande.png'/>
           </center>
         </b-col>
       </b-row> 
       <b-row>
         <nav id="myTopnav" class='topnav'>
           <ul>            
-           <li><a href='/'>Home</a></li>
+           <li><a href='#/'>Home</a></li>
            <li>
              <a href=''>Sobre <span class="caret"></span></a>
               <div>
@@ -26,7 +24,7 @@
               </div>
             </li>
            <li><a href='#/news'>Notícias</a></li>
-           <li><a href='#/login'>Login</a></li>           
+           <li><a href='#/login'>Login</a></li>
            <li><a href='#/subscribe'>Registro</a></li>
            <li class="icon"><a href="javascript:void(0);" style="font-size:15px;"  v-on:click='myFunction' >&#9776;</a></li>
           </ul>
@@ -170,7 +168,7 @@ nav .icon {
   display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   nav:not(.responsive) ul li:not(:first-child):not(.icon) {display: none;}
   nav .icon {
     float: right;
@@ -178,7 +176,7 @@ nav .icon {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   nav.responsive {position: relative;}
   nav.responsive .icon {
     position: absolute;

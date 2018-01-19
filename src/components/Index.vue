@@ -1,5 +1,6 @@
-<template align-v='center'>
-<center width='100%'>
+<template >
+<b-container class='content'>
+<b-row align-h="center">
   <b-carousel align-v='center' id="carousel1"
                 style='text-shadow: 1px 1px 2px #333;'
                 controls
@@ -14,11 +15,25 @@
       <b-carousel-slide align-v='center' img-src="../assets/slide-cursinho-focus.jpg">
       </b-carousel-slide>
   </b-carousel>
-</center>
+</b-row>
+<b-row>
+  <Documents/>
+</b-row>
+<b-row>
+  <Depoiments/>
+</b-row>
+</b-container>
 </template>
 <script>
+import Documents from '@/components/Documents.vue'
+import Depoiments from '@/components/Depoiments.vue'
+
 export default {
   name: 'Index',
+  components: {
+    Documents,
+    Depoiments
+  },
   data() {
     return {
       slide: 0,
@@ -35,6 +50,10 @@ export default {
   },
 };
 </script>
-<<style lang="scss">
+<style lang="scss">
+@import '../custom-bootstrap.scss';
 
+.content{
+  margin: 2% 22px 8px 22px;
+}
 </style>

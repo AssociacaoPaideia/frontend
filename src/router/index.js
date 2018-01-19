@@ -8,8 +8,10 @@ import AdditionalInfo from '@/components/AdditionalInfo';
 import SocialEco from '@/components/SocialEco';
 import Signup from '@/components/Signup';
 import HeaderNav from '@/components/HeaderNav';
+import Footer from '@/components/Footer';
 import Index from '@/components/Index';
 
+Vue.component('Footer', Footer);
 Vue.component('HeaderNav', HeaderNav);
 Vue.use(Router);
 

@@ -7,6 +7,9 @@
       <b-row align-v='center'>
         <router-view align-v='center'/> 
       </b-row>
+      <b-row align-v="end">
+        <Footer/>
+      </b-row>
     </b-container>
   </div>
 </template>
@@ -23,6 +26,6 @@ export default {
 
 body{
   background-color: #fff;
-  padding-top:2%;
+  padding-top: 5px;
 }
 </style>
