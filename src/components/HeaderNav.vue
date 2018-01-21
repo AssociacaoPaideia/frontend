@@ -13,7 +13,7 @@
       <b-row>
         <nav id="myTopnav" class='topnav'>
           <ul>            
-           <li><a href='#/'>Home</a></li>
+           <li><a href='/#/'>Home</a></li>
            <li>
              <a href=''>Sobre <span class="caret"></span></a>
               <div>
@@ -23,9 +23,9 @@
                 </ul>
               </div>
             </li>
-           <li><a href='#/news'>Notícias</a></li>
-           <li><a href='#/login'>Login</a></li>
-           <li><a href='#/subscribe'>Registro</a></li>
+           <li><a href='/#/news'>Notícias</a></li>
+           <li><a href='/#/login'>Login</a></li>
+           <li><a href='/#/signup'>Registro</a></li>
            <li class="icon"><a href="javascript:void(0);" style="font-size:15px;"  v-on:click='myFunction' >&#9776;</a></li>
           </ul>
         </nav>
@@ -36,9 +36,6 @@
 <script>
 export default {
   name: 'HeaderNav',
-  data() {
-
-  },
   methods: {
     myFunction: () => {
       const x = document.getElementById('myTopnav');

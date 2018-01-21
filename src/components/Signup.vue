@@ -5,7 +5,7 @@
         <b-form class='text-white font-weight-bold login-form'  @submit='clicked' @reset='clicked' v-if='true'>
           <b-form-group id='igName'
                         label='Nome:'>
-            <b-form-input id='exampleInput1'
+            <b-form-input id='inputName'
                           type='text'
                           v-model='form.firstName'
                           required
@@ -14,7 +14,7 @@
           </b-form-group>
           <b-form-group id='igLastName'
                         label='Sobrenome:'>
-            <b-form-input id='exampleInput1'
+            <b-form-input id='inputLastname'
                           type='text'
                           v-model='form.lastName'
                           required
@@ -23,7 +23,7 @@
           </b-form-group>
           <b-form-group id='igMail'
                         label='Email:'>
-            <b-form-input id='exampleInput1'
+            <b-form-input id='inputMail'
                           type='email'
                           v-model='form.email'
                           required
@@ -31,7 +31,7 @@
             </b-form-input>
           </b-form-group>
         <b-form-group id='igPassword' label='Senha' class='primary'>
-        <b-form-input id='exampleInput2'
+        <b-form-input id='inputPassword'
                       type='password'
                       v-model='form.password'
                       required
@@ -39,7 +39,7 @@
         </b-form-input>
         </b-form-group>
         <b-form-group id='igPasswordConfirm' label='Confirme sua senha' class='primary'>
-        <b-form-input id='exampleInput2'
+        <b-form-input id='inputPasswordConfirm'
                       type='password'
                       v-model='form.passwordConfirm'
                       required

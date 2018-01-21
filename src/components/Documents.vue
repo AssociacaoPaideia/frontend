@@ -7,19 +7,19 @@
           <b-col cols="12" md="4">
               <center>
                 <b-img rounded blank blank-color="#fff"  width="100" height="100"/><br/>
-                <span class='btn'><bold>INSTRUÇÕES</bold></span>
+                <span class='btn'>INSTRUÇÕES</span>
               </center>
           </b-col>               
           <b-col cols="12" md="4">
               <center>
                 <b-img blank rounded blank-color="#fff"  width="100" height="100"/><br/>
-                <span class='btn'><bold>EDITAL/MANUAL</bold></span>
+                <span class='btn'>EDITAL/MANUAL</span>
               </center>
           </b-col>
           <b-col cols="12" md="4">
               <center>
                 <b-img blank rounded blank-color="#fff"  width="100" height="100"/><br/>
-                <span class='btn'><bold>INSCRIÇÃO</bold></span>
+                <span class='btn'>INSCRIÇÃO</span>
               </center>
           </b-col>
       </b-row>
