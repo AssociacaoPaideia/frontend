@@ -1,29 +1,28 @@
 <template>
- <b-container>
-   <b-row align-v="center">
-     <b-col cols='10' offset="1"  sm='8' offset-sm="2" md='6' offset-md="3"  align-v="center">        
-        <b-form class="text-white font-weight-bold login-form"  @submit="clicked" @reset="clicked" v-if="true">
+ <b-container class='login'>
+        <b-form class="font-weight-bold login-form"  @submit="clicked" @reset="clicked" v-if="true">
           <b-form-group id="exampleInputGroup1"
                         label="Email:">
             <b-form-input id="exampleInput1"
                           type="email"
                           v-model="form.email"
                           required
-                          placeholder="Digite seu Email">
+                          placeholder="usuario@exemplo.com">
             </b-form-input>
           </b-form-group>
-           <b-form-group id="exampleInputGroup2" label="Senha" class="primary">
+           <b-form-group id="exampleInputGroup2" label="Senha:" class="primary">
         <b-form-input id="exampleInput2"
                       type="password"
                       v-model="form.password"
                       required
-                      placeholder="Digite sua Senha">
+                      placeholder="Senha">
         </b-form-input>
         </b-form-group>
-          <b-button class='text-white' type="submit" variant="primary">Entrar</b-button>
+          <b-button style="width: 100%" class='text-white' type="submit" variant="primary">Entrar</b-button>
         </b-form>
-      </b-col>
-    </b-row>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Esqueceu sua senha?</a>
+
 </b-container>
 </template>
 
@@ -40,6 +39,7 @@ export default {
   },
   methods: {
     clicked() {
+      this.$store.commit('setAuthorization', !this.$store.state.authorized)
       this.counter = Math.random() * this.max;
     },
   },
@@ -49,20 +49,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "../custom-bootstrap.scss";
-.logo{
-  margin: 0px 0px 10px 0px;
-}
-.login-form{
-  background-color: $paideia-purple;
-  border-radius: 5px;
-  padding:10px;
-
-  button {
-      width: 100%
-  }
-}
-
-.teste{
-  margin-top: 30px;
+.login{
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background: none;
+  border: 0;
 }
 </style>

@@ -10,6 +10,7 @@ import Signup from '@/components/Signup';
 import HeaderNav from '@/components/HeaderNav';
 import Footer from '@/components/Footer';
 import Index from '@/components/Index';
+import NotFound from '@/components/NotFound'
 
 Vue.component('Footer', Footer);
 Vue.component('HeaderNav', HeaderNav);
@@ -21,11 +22,6 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Index,
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login,
     }, {
       path: '/signup',
       name: 'Inscrição',
@@ -55,6 +51,10 @@ export default new Router({
       path: '/wizard',
       name: 'Wizard',
       component: WizardProcess,
-    },
+    }, {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound,
+    }
   ],
 });

@@ -5,6 +5,9 @@ const mutations = {
     // eslint-disable-next-line
     state.users = users;
   },
+  setAuthorization (state, value) {
+    state.authorized = value
+  }  
 };
 
 export default mutations;
