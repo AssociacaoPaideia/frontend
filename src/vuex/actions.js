@@ -28,6 +28,31 @@ const actions = {
       },
     });
   },
+  signIn({ commit, state, rootState },login){
+    debugger
+    return rootState.apollo.watchQuery({
+      // gql query
+      query: gql`query Authenticate($password: String!, $email: String!) {
+        authenticate(email: $email, password: $password){
+          token
+        }
+      }`,
+      // Static parameters
+      variables: {
+        email: login.email,
+        password: login.password,
+      },
+    }).subscribe({
+      next(result) {
+        let users = result.data.users || [];
+        commit('updateUsers', users)
+      },
+      error(error){
+        // eslint-disable-next-line
+        console.log('there was an error sending the query', error);
+      },
+    });
+  }
 };
 
 export default actions;

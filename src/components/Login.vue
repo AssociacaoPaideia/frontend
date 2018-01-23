@@ -1,11 +1,11 @@
 <template>
  <b-container class='login'>
-        <b-form class="font-weight-bold login-form"  @submit="clicked" @reset="clicked" v-if="true">
+        <b-form class="font-weight-bold login-form"  @submit="clicked($event)" @reset="clicked($event)" v-if="true">
           <b-form-group id="exampleInputGroup1"
                         label="Email:">
             <b-form-input id="exampleInput1"
                           type="email"
-                          v-model="form.email"
+                          v-model="login.email"
                           required
                           placeholder="usuario@exemplo.com">
             </b-form-input>
@@ -13,7 +13,7 @@
            <b-form-group id="exampleInputGroup2" label="Senha:" class="primary">
         <b-form-input id="exampleInput2"
                       type="password"
-                      v-model="form.password"
+                      v-model="login.password"
                       required
                       placeholder="Senha">
         </b-form-input>
@@ -27,20 +27,29 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'Login',
   data() {
     return {
-      form: {
+      login: {
         email: '',
         password: '',
       },
     };
   },
+  computed:{
+    ...mapGetters(['users']),
+  },
   methods: {
-    clicked() {
-      this.$store.commit('setAuthorization', !this.$store.state.authorized)
-      this.counter = Math.random() * this.max;
+    ...mapActions(['signIn']),
+    clicked(event) {
+       // now we have access to the native event
+    if (event) {
+     event.preventDefault()
+    }
+      this.signIn(this.login)
     },
   },
 };
