@@ -1,13 +1,16 @@
-import { updateUsers } from './mutation-types';
+import * as mutation from './mutation-types';
 
 const mutations = {
-  [updateUsers](state, users) {
+  [mutation.updateUsers](state, users) {
     // eslint-disable-next-line
     state.users = users;
   },
-  setAuthorization (state, value) {
+  [mutation.setAuthorization] (state, value) {
     state.authorized = value
-  }  
+  },
+  [mutation.updateToken](state, token) {
+    state.token = token;
+  },
 };
 
 export default mutations;

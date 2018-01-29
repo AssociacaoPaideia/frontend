@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import * as mutation from './mutation-types';
 
 const actions = {
   // eslint-disable-next-line
@@ -20,7 +21,7 @@ const actions = {
     }).subscribe({
       next(result) {
         let users = result.data.users || [];
-        commit('updateUsers', users)
+        commit(mutation.updateUsers, users)
       },
       error(error){
         // eslint-disable-next-line
@@ -44,8 +45,8 @@ const actions = {
       },
     }).subscribe({
       next(result) {
-        let users = result.data.users || [];
-        commit('updateUsers', users)
+        let token = result.data.authenticate.token || [];
+        commit(mutation.updateToken, token)
       },
       error(error){
         // eslint-disable-next-line
