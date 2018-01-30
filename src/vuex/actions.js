@@ -45,6 +45,10 @@ const actions = {
       },
     }).subscribe({
       next(result) {
+        if(!result.data.authenticate){
+          return
+        }
+        
         let token = result.data.authenticate.token || [];
         commit(mutation.updateToken, token)
       },

@@ -27,16 +27,16 @@
               </b-nav-item-dropdown>            
               <b-nav-item href="#/news">Notícias</b-nav-item>
               <b-nav-item href="#/contato">Contato</b-nav-item>
-              <b-nav-item href="#/signup">Registrar-se</b-nav-item>
+              <b-nav-item href="#/signup" v-if="!isAuthenticated" >Registrar-se</b-nav-item>
               
             </b-navbar-nav>
 
             <b-navbar-nav class="ml-auto">
-              <b-nav-item-dropdown v-if="$store.state.authorized" text="Olá, Davi!" right>
+              <b-nav-item-dropdown v-if="isAuthenticated" text="Olá, Davi!" right>
                 <b-dropdown-item href="#/perfil">Perfil</b-dropdown-item> 
               </b-nav-item-dropdown>
-              <b-nav-item-dropdown v-else text="Acessar sua conta" right>
-                 <Login/>
+              <b-nav-item-dropdown v-if="!isAuthenticated" text="Acessar sua conta" right>
+                 <Login />
               </b-nav-item-dropdown> 
             </b-navbar-nav>
           </b-collapse>
@@ -47,10 +47,14 @@
 
 <script>
 import Login from '@/components/Login'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'HeaderNav',
   components: { Login },
+  computed: {
+    ...mapGetters(['isAuthenticated'])
+  }
 };
 </script>
 
