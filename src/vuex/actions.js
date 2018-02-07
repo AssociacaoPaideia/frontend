@@ -30,7 +30,7 @@ const actions = {
     });
   },
   signIn({ commit, state, rootState },login){
-    debugger
+    
     return rootState.apollo.watchQuery({
       // gql query
       query: gql`query Authenticate($password: String!, $email: String!) {
@@ -90,7 +90,43 @@ const actions = {
         console.log('there was an error sending the query', error);
       },
     });
+  },
+  addUser({ commit, state, rootState }, user){
+    return rootState.apollo.mutate({
+      // gql query
+      mutation: gql`mutation addUser($firstName: String!, $lastName: String!,$email: String!, $password: String! ) {
+        addUser(email: $email,password: $password, firstName: $firstName, lastName: $lastName){
+          email
+          firstName
+          lastName
+        }
+      }`,
+      // Static parameters
+      variables: {
+        email: user.email,
+        password: user.password,
+        firstName:user.firstName,
+        lastName:user.lastName
+      },
+    }).subscribe({
+      next(result) {
+        debugger
+        if(!result.data.authenticate){
+          return
+        }
+        
+        let token = result.data.authenticate.token || [];
+        commit(mutation.updateToken, token)
+        localStorage.setItem('token', token)
+      },
+      error(error){
+        debugger
+        // eslint-disable-next-line
+        console.log('there was an error sending the query', error);
+      },
+    });
   }
+
 };
 
 export default actions;

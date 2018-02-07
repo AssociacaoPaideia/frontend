@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+
 export default {
   name: 'Signup',
   data() {
@@ -68,9 +70,10 @@ export default {
     };
   },
   methods: {
+     ...mapActions(['addUser']),
     clicked() {
-      this.counter = Math.random() * this.max;
-    },
+      this.addUser(this.form)
+    }
   },
 };
 </script>
