@@ -51,6 +51,39 @@ const actions = {
         
         let token = result.data.authenticate.token || [];
         commit(mutation.updateToken, token)
+        localStorage.setItem('token', token)
+      },
+      error(error){
+        // eslint-disable-next-line
+        console.log('there was an error sending the query', error);
+      },
+    });
+  },
+  setToken({ commit }, token){
+    commit(mutation.updateToken, token)
+  },
+  addSubscriber({ commit, state, rootState }){
+    return rootState.apollo.watchQuery({
+      // gql query
+      query: gql`query Authenticate($password: String!, $email: String!) {
+        authenticate(email: $email, password: $password){
+          token
+        }
+      }`,
+      // Static parameters
+      variables: {
+        email: login.email,
+        password: login.password,
+      },
+    }).subscribe({
+      next(result) {
+        if(!result.data.authenticate){
+          return
+        }
+        
+        let token = result.data.authenticate.token || [];
+        commit(mutation.updateToken, token)
+        localStorage.setItem('token', token)
       },
       error(error){
         // eslint-disable-next-line

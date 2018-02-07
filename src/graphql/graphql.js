@@ -7,7 +7,10 @@ import VueApollo from 'vue-apollo';
 // Create a new HttpLink to connect to your GraphQL API.
 // According to the Apollo docs, this should be an absolute URI.
 const httpLink = new HttpLink({
-  uri: 'http://localhost:3000/graphql',
+  uri: 'https://paideia-backend.herokuapp.com/graphql',
+  headers: {
+    'authentication': localStorage.getItem('token') || null
+  }
 });
 
 // I'm creating another variable here just because it makes
@@ -21,6 +24,7 @@ export const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   // Useful if you have the Apollo DevTools installed in your browser.
   connectToDevTools: true,
+  
 });
 
 export const apolloProvider = new VueApollo({

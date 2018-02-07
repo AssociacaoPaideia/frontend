@@ -15,8 +15,19 @@
 </template>
 
 <script>
-export default {
+import {mapActions} from 'vuex'
+
+export default { 
   name: 'app',
+  mounted(){
+    //se existir token no localStorage, colcoa ele no vuex
+    if(localStorage.getItem('token')){
+      this.setToken(localStorage.getItem('token'))
+    }
+  },
+  methods: {
+    ...mapActions(['setToken']),
+  },
 };
 </script>
 

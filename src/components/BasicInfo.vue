@@ -2,10 +2,9 @@
   <b-container>
    <b-row align-v="center">
      <b-col cols='12' offset="0" sm='10'  offset-sm='1' md='8' offset-md="2"  lg='6' offset-lg="3"  align-v="center">        
-      <b-form class="text-white font-weight-bold login-form">
+      <b-form class="text-white font-weight-bold login-form" @submit="send($event)" @reset="send($event)">
        <b-form-group id="fieldset1" label="Digite seu Nome:*"
-            label-for="form.name" :invalid-feedback="invalidNameText" :valid-feedback="validNameText"
-            :state="isNameValid">
+            label-for="form.name">
         <b-form-input id="form.name" type="text" v-model.trim="form.name" placeholder="Nome Completo"></b-form-input>
        </b-form-group>
        <b-form-group id="fieldset1" label="Data de Nascimento:"
@@ -30,12 +29,12 @@
 
         <b-form-group id="fieldset1" label="CPF"
             label-for="input1" >
-        <b-form-input type="text" v-model="form.email" placeholder="CPF"></b-form-input>
+        <b-form-input type="text" v-model="form.cpf" placeholder="CPF"></b-form-input>
         </b-form-group>
 
         <b-form-group id="fieldset1" label="RG"
             label-for="input1" >
-        <b-form-input type="text" v-model="form.email" placeholder="RG"></b-form-input>
+        <b-form-input type="text" v-model="form.rg" placeholder="RG"></b-form-input>
         </b-form-group>
 
       </b-form>
@@ -51,15 +50,14 @@ export default {
   data() {
     return {
       form: {
-        name: '',
-        password: '',
         birthDate: '',
-        placeBirth: '',
-        address: '',
-        phone: '',
-        email: '',
-        cpf: '',
+        birthPlace:'',
+        phone:'',
+        citizenCard:'adasdasd', 
+        cpf:'',
         rg: '',
+        photo:'wwerwerweasdas',
+        userId:'',
       },
       Usuarios: {
         id: '',
@@ -69,28 +67,15 @@ export default {
   },
   computed: {
     ...mapGetters(['users']),
-    isNameValid() {
-      // eslint-disable-next-line
-      console.log(this.users);
-
-      this.getUsers();
-      return this.form.name.length > 5;
-    },
-    invalidNameText() {
-      if (!this.isNameValid && this.form.name.length > 0) {
-        return 'Por favor, insira um nome com mais de 5 caracteres';
-      }
-      return '';
-    },
-    validNameText() {
-      if (this.isNameValid) {
-        return '';
-      }
-      return '';
-    },
   },
   methods: {
     ...mapActions(['getUsers']),
+    send(event){
+         if (event) {
+            event.preventDefault()
+         }
+
+    }
   },
 };
 </script>

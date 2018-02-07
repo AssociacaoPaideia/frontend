@@ -28,6 +28,7 @@
               <b-nav-item href="#/news">Notícias</b-nav-item>
               <b-nav-item href="#/contato">Contato</b-nav-item>
               <b-nav-item href="#/signup" v-if="!isAuthenticated" >Registrar-se</b-nav-item>
+              <b-nav-item href="#/subscribe/basic" v-if="isAuthenticated" >Cursinho 2018</b-nav-item>
               
             </b-navbar-nav>
 
