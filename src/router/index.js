@@ -10,7 +10,8 @@ import Signup from '@/components/Signup';
 import HeaderNav from '@/components/HeaderNav';
 import Footer from '@/components/Footer';
 import Index from '@/components/Index';
-import NotFound from '@/components/NotFound'
+import NotFound from '@/components/NotFound';
+import ActivateAccount from '@/components/ActivateAccount';
 
 Vue.component('Footer', Footer);
 Vue.component('HeaderNav', HeaderNav);
@@ -51,6 +52,11 @@ export default new Router({
       path: '/wizard',
       name: 'Wizard',
       component: WizardProcess,
+    }, {
+      path: '/ativacao',
+      name: 'ActivateAccount',
+      component: ActivateAccount,
+      props: (route) => ({ token: route.query.token }),
     }, {
       path: '*',
       name: 'NotFound',

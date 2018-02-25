@@ -7,6 +7,12 @@ const getters = {
   },
   isAuthenticated(state) {
     return state.token ? true : false;
+  },
+  activationSuccess(state){
+    return state.activationSuccess;
+  },
+  registrationSuccess(state){
+    return state.registrationSuccess;
   }
 };
 

@@ -108,25 +108,34 @@ const actions = {
         firstName:user.firstName,
         lastName:user.lastName
       },
-    }).subscribe({
-      next(result) {
+    }).then((result) => {
         debugger
-        if(!result.data.authenticate){
-          return
+        if(!result.data.addUser){
+          commit(mutation.registrationSuccess, false);
         }
-        
-        let token = result.data.authenticate.token || [];
-        commit(mutation.updateToken, token)
-        localStorage.setItem('token', token)
-      },
-      error(error){
+        commit(mutation.registrationSuccess, true);
+      }).catch( (error) => {
         debugger
         // eslint-disable-next-line
         console.log('there was an error sending the query', error);
-      },
+        commit(mutation.registrationSuccess, false);
+      });
+  },
+  activate({ commit, state, rootState }, token){
+    return rootState.apollo.mutate({
+      mutation: gql`mutation Activate($token: String!){
+        activate(token: $token) 
+      }`,
+      variables: {
+        token: token
+      }
+    }).then((result) => {
+        commit(mutation.activationSuccess, true);
+      }
+    ).catch((e) => {
+      commit(mutation.activationSuccess, false);
     });
-  }
-
+  },
 };
 
 export default actions;

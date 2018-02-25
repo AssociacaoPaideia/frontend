@@ -11,6 +11,12 @@ const mutations = {
   [mutation.updateToken](state, token) {
     state.token = token;
   },
+  [mutation.activationSuccess](state, value){
+    state.activationSuccess = value;
+  },
+  [mutation.registrationSuccess](state, value){
+    state.registrationSuccess = value;
+  },
 };
 
 export default mutations;

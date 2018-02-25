@@ -1,8 +1,8 @@
 <template>
  <b-container>
-   <b-row align-v='center'>
+   <b-row align-v='center' v-if="registrationSuccess === null">
      <b-col class='container' cols='10' offset='1'  sm='8' offset-sm='2' md='6' offset-md='3'  align-v='center'>        
-        <b-form class='text-white font-weight-bold login-form'  @submit='clicked' @reset='clicked' v-if='true'>
+        <b-form class='text-white font-weight-bold login-form' @submit="clicked" @reset="clicked" v-if='true'>
           <b-form-group id='igName'
                         label='Nome:'>
             <b-form-input id='inputName'
@@ -34,7 +34,9 @@
         <b-form-input id='inputPassword'
                       type='password'
                       v-model='form.password'
-                      required
+                      required                  
+                      :invalid-feedback="invalidPasswordText"
+                      :state="isPasswordValid"
                       placeholder='Digite sua Senha'>
         </b-form-input>
         </b-form-group>
@@ -43,21 +45,49 @@
                       type='password'
                       v-model='form.passwordConfirm'
                       required
+                      :state="passwordMatch"
+                      :invalid-feedback="invalidPasswordConfirmation"
                       placeholder='Confirme sua Senha'>
         </b-form-input>
         </b-form-group>
-          <b-button class='text-white' type='submit' variant='primary'>Enviar</b-button>
+          <b-button class='text-white' :disabled="sent" type="submit" variant='primary'>Enviar</b-button>
+           <b-progress v-if="sent" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
         </b-form>
       </b-col>
+    </b-row>
+    <b-row v-else-if="registrationSuccess === true">
+       <h1> Cadastro feito com sucesso! Realize a ativação da sua conta através do link enviado no e-mail cadastro.</h1>
     </b-row>
 </b-container>
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 
 export default {
   name: 'Signup',
+  props: {
+    sent: false,
+  },
+  computed: {
+    passwordMatch() {
+      return  this.isPasswordValid && this.form.password === this.form.passwordConfirm;
+    },
+    isPasswordValid() {
+      return this.form.password.length > 5;
+    },
+    invalidPasswordText(){
+      if(!this.isPasswordValid && this.form.password.length > 0){
+        return 'Digite uma senha com mais de 5 caracteres!';
+      }
+    },
+    invalidPasswordConfirmation(){
+      if(!this.passwordMatch){
+        return 'A confirmação de senha não é igual a senha.';
+      }
+    },
+    ...mapGetters(['registrationSuccess']),
+  },
   data() {
     return {
       form: {
@@ -72,7 +102,8 @@ export default {
   methods: {
      ...mapActions(['addUser']),
     clicked() {
-      this.addUser(this.form)
+      this.addUser(this.form);
+      this.sent = true;
     }
   },
 };

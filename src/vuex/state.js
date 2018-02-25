@@ -4,7 +4,9 @@ const state = {
   users: [],
   token: '',
   authorized: false,
-  apollo: apolloClient
+  activationSuccess: null,
+  apollo: apolloClient,
+  registrationSuccess: null,
 };
 
 export default state;
