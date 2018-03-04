@@ -3,10 +3,6 @@
    <b-row align-v="center">
      <b-col cols='12' offset="0" sm='10'  offset-sm='1' md='8' offset-md="2"  lg='6' offset-lg="3"  align-v="center">        
       <b-form class="text-white font-weight-bold login-form" @submit="send($event)" @reset="send($event)">
-       <b-form-group id="fieldset1" label="Digite seu Nome:*"
-            label-for="form.name">
-        <b-form-input id="form.name" type="text" v-model.trim="form.name" placeholder="Nome Completo"></b-form-input>
-       </b-form-group>
        <b-form-group id="fieldset1" label="Data de Nascimento:"
             label-for="input1" >
         <b-form-input type="date" v-model="form.birthDate" placeholder="Data de Nascimento"></b-form-input>
@@ -14,29 +10,34 @@
        
        <b-form-group id="fieldset1" label="Cidade De Nascimento"
             label-for="input1" >
-        <b-form-input type="text" v-model="form.address" placeholder="Cidade De Nascimento"></b-form-input>
+        <b-form-input type="text" v-model="form.address" placeholder="Ex.: Louveira"></b-form-input>
        </b-form-group>
 
         <b-form-group id="fieldset1" label="Telefone"
             label-for="input1" >
-        <b-form-input type="text" v-model="form.phone" placeholder="Telefone"></b-form-input>
+            <the-mask class='form-control' placeholder="(19) 9 9999-9999" v-model="form.tel" :mask="['(##) ####-####', '(##) #####-####']" />
        </b-form-group>
-
-       <b-form-group id="fieldset1" label="E-mail"
-            label-for="input1" >
-        <b-form-input type="email" v-model="form.email" placeholder="E-mail"></b-form-input>
-        </b-form-group>
 
         <b-form-group id="fieldset1" label="CPF"
             label-for="input1" >
-        <b-form-input type="text" v-model="form.cpf" placeholder="CPF"></b-form-input>
+          <the-mask class='form-control'  placeholder="999.999.999-99" v-model="form.cpf" :mask="['###.###.###-##']" />
         </b-form-group>
 
-        <b-form-group id="fieldset1" label="RG"
-            label-for="input1" >
-        <b-form-input type="text" v-model="form.rg" placeholder="RG"></b-form-input>
+        <b-form-group id="fieldsetRg" label="RG"
+            label-for="RG" >
+            <the-mask class='form-control'  placeholder="999.999.999-9" v-model="form.rg" :mask="['##.###.###-#','###.###.###-#']" />
         </b-form-group>
 
+        <b-form-group id="fieldCitizenCard" label="Cartão Cidadão (Digitalizado)"
+            label-for="Cartão Cidadão" >
+        <b-form-file @change="uploadCitizenCard" accept="image/*" :state="Boolean(form.citizenCard)" placeholder="Escolha o arquivo digitalizado..."></b-form-file>
+        </b-form-group>
+
+        <b-form-group id="fieldPhoto" label="Foto (Pode ser uma selfie!)"
+            label-for="Foto" >
+          <b-form-file @change="uploadSelfie" accept="image/*" :state="Boolean(form.photo)" placeholder="Escolha uma foto..."></b-form-file>
+        </b-form-group>
+        <b-button class='text-white'  type="submit" variant='primary'>Próximo Passo</b-button>
       </b-form>
       </b-col>
     </b-row>
@@ -44,8 +45,10 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import {TheMask} from 'vue-the-mask'
 
 export default {
+  components: {TheMask},
   name: 'BasicInfo',
   data() {
     return {
@@ -53,15 +56,11 @@ export default {
         birthDate: '',
         birthPlace:'',
         phone:'',
-        citizenCard:'adasdasd', 
+        citizenCard: null, 
         cpf:'',
         rg: '',
-        photo:'wwerwerweasdas',
+        photo: null,
         userId:'',
-      },
-      Usuarios: {
-        id: '',
-        email: '',
       },
     };
   },
@@ -74,7 +73,27 @@ export default {
          if (event) {
             event.preventDefault()
          }
-
+    },
+    loadPhoto: function (e) {
+      return new Promise((resolve, reseject) => {
+        const file = e.target.files[0]
+        console.log(e)
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          resolve(e.target.result)
+        };
+        reader.readAsDataURL(file);
+      })        
+    },
+    uploadSelfie: function (e){
+      this.loadPhoto(e).then(img => {
+        this.form.photo = img;
+      });
+    },
+    uploadCitizenCard: function (e){
+      this.loadPhoto(e).then(img => {
+        this.form.citizenCard = img;
+      });
     }
   },
 };
@@ -94,4 +113,9 @@ export default {
       width: 100%
   }
 }
+
+.arquivo:lang(pt)~.custom-file-label::after {
+    content: "Escolher";
+}
+
 </style>

@@ -27,14 +27,15 @@
               </b-nav-item-dropdown>            
               <b-nav-item href="#/news">Notícias</b-nav-item>
               <b-nav-item href="#/contato">Contato</b-nav-item>
-              <b-nav-item href="#/signup" v-if="!isAuthenticated" >Registrar-se</b-nav-item>
-              <b-nav-item href="#/subscribe/basic" v-if="isAuthenticated" >Cursinho 2018</b-nav-item>
+              <b-nav-item href="#/signup" @click="registerClicked" v-if="!isAuthenticated" >Registrar-se</b-nav-item>
+              <b-nav-item href="#/subscribe/basic" v-if="isAuthenticated" >Inscrição Cursinho 2018</b-nav-item>
               
             </b-navbar-nav>
 
             <b-navbar-nav class="ml-auto">
-              <b-nav-item-dropdown v-if="isAuthenticated" text="Olá, Davi!" right>
-                <b-dropdown-item href="#/perfil">Perfil</b-dropdown-item> 
+              <b-nav-item-dropdown v-if="isAuthenticated && authenticatedUser" :text="'Olá, ' +  authenticatedUser.firstName +'!'" right>
+                <b-dropdown-item href="#/perfil">Perfil</b-dropdown-item>
+                <b-dropdown-item href="#">Sair</b-dropdown-item> 
               </b-nav-item-dropdown>
               <b-nav-item-dropdown v-if="!isAuthenticated" text="Acessar sua conta" right>
                  <Login />
@@ -49,12 +50,28 @@
 <script>
 import Login from '@/components/Login'
 import { mapGetters, mapActions } from 'vuex'
+import { truncate } from 'fs';
 
 export default {
   name: 'HeaderNav',
   components: { Login },
   computed: {
-    ...mapGetters(['isAuthenticated'])
+    ...mapGetters(['isAuthenticated', 'authenticatedUser','registrationSuccess']),
+    ...mapActions(['resetRegistration'])
+  },
+  watch: {
+    isAuthenticated: function(oldVal, newVal){
+      if(oldVal == false && newVal == true){
+      }
+    }
+  },
+  methods: {
+    registerClicked() {
+      debugger;
+      if(this.registrationSuccess){        
+        this.resetRegistration();
+      }
+    }
   }
 };
 </script>

@@ -3,7 +3,26 @@ import * as mutation from './mutation-types';
 
 const actions = {
   // eslint-disable-next-line
-  getUsers({ commit, state, rootState }) {
+  resetRegistration({commit, state, rootState}){
+     commit(mutation.registrationSuccess, null);
+  },
+  getLoggedUser({commit, state, rootState}){
+    return rootState.apollo.watchQuery({
+      query: gql`query authenticatedUser { authenticatedUser{ id firstName lastName email } }`
+    }).subscribe({
+      next(result){
+        if(result.data.authenticatedUser){
+          commit(mutation.updateAuthUser, result.data.authenticatedUser);
+        } else {
+          commit(mutation.updateToken, null);
+        }
+      },
+      error(result){
+        commit(mutation.updateToken, null);
+      },
+    })
+  },
+  getUsers({ commit, state, rootState }, user) {
     console.log(rootState)
     return rootState.apollo.watchQuery({
       // gql query
@@ -15,8 +34,9 @@ const actions = {
       }`,
       // Static parameters
       variables: {
-        email: 'Gia_Erdman72@gmail.com',
-        id: undefined,
+        email: user.email,
+        id: user.id,
+        token: user.token,
       },
     }).subscribe({
       next(result) {
@@ -46,15 +66,23 @@ const actions = {
     }).subscribe({
       next(result) {
         if(!result.data.authenticate){
+          commit(mutation.updateLoginErrMsg, "Verifique seu e-mail e senha e tente novamente.")
+          return
+        }
+        if(!result.data.authenticate.token){
+          commit(mutation.updateLoginErrMsg, "Usuário não está ativo.")
           return
         }
         
         let token = result.data.authenticate.token || [];
         commit(mutation.updateToken, token)
         localStorage.setItem('token', token)
+        debugger;
+        actions.getLoggedUser({ commit, state, rootState })
       },
       error(error){
         // eslint-disable-next-line
+        commit(mutation.updateLoginErrMsg, "Verifique seu e-mail e senha e tente novamente.")
         console.log('there was an error sending the query', error);
       },
     });
@@ -130,7 +158,7 @@ const actions = {
         token: token
       }
     }).then((result) => {
-        commit(mutation.activationSuccess, true);
+        commit(mutation.activationSuccess, result.data.activate);
       }
     ).catch((e) => {
       commit(mutation.activationSuccess, false);

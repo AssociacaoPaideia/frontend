@@ -17,9 +17,9 @@ export default {
   },
   data() {
     return {
-      stepsExample: [{ name: 'Dados Basicos', href: '/login', done: true, active: false },
-      { name: 'Dados Adicionais', href: '/login', done: false, active: true },
-      { name: 'Socioeconômico', href: '/login', done: false, active: false }],
+      stepsExample: [{ name: 'Dados Basicos', href: '/basic', done: false, active: true },
+      { name: 'Dados Adicionais', href: '/additional', done: false, active: false },
+      { name: 'Socioeconômico', href: '/social', done: false, active: false }],
     };
   },
   methods: {

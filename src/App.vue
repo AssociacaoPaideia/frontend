@@ -21,12 +21,14 @@ export default {
   name: 'app',
   mounted(){
     //se existir token no localStorage, colcoa ele no vuex
-    if(localStorage.getItem('token')){
-      this.setToken(localStorage.getItem('token'))
+    var localToken = localStorage.getItem('token'); 
+    if(localToken){
+      this.setToken(localToken)
+      this.getLoggedUser();
     }
   },
   methods: {
-    ...mapActions(['setToken']),
+    ...mapActions(['setToken', 'getLoggedUser']),
   },
 };
 </script>

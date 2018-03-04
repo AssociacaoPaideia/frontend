@@ -19,6 +19,9 @@
         </b-form-input>
         </b-form-group>
           <b-button style="width: 100%" class='text-white' type="submit" variant="primary">Entrar</b-button>
+          <b-alert dismissible :show="loginErrMsg !== null"
+             variant="danger"> {{loginErrMsg}}
+          </b-alert>
         </b-form>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Esqueceu sua senha?</a>
@@ -31,6 +34,9 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Login',
+  props:{
+    lastMsg : null,
+  },
   data() {
     return {
       login: {
@@ -40,7 +46,9 @@ export default {
     };
   },
   computed:{
-    ...mapGetters(['users']),
+    ...mapGetters(['authenticatedUser', 'token', 'loginErrMsg']),
+  },
+  watch: {
   },
   methods: {
     ...mapActions(['signIn']),

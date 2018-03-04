@@ -13,6 +13,12 @@ const getters = {
   },
   registrationSuccess(state){
     return state.registrationSuccess;
+  },
+  authenticatedUser(state) {
+    return state.authenticatedUser;
+  },
+  loginErrMsg(state){
+    return state.loginErrMsg;
   }
 };
 

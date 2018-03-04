@@ -17,6 +17,12 @@ const mutations = {
   [mutation.registrationSuccess](state, value){
     state.registrationSuccess = value;
   },
+  [mutation.updateAuthUser](state, value){
+    state.authenticatedUser = value;
+  },
+  [mutation.updateLoginErrMsg](state, value){
+    state.loginErrMsg = value;
+  }
 };
 
 export default mutations;

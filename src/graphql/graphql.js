@@ -1,6 +1,7 @@
 // This is everything we need to work with Apollo 2.0.
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import VueApollo from 'vue-apollo';
 
@@ -8,8 +9,17 @@ import VueApollo from 'vue-apollo';
 // According to the Apollo docs, this should be an absolute URI.
 const httpLink = new HttpLink({
   uri: 'https://paideia-backend.herokuapp.com/graphql',
-  headers: {
-    'authentication': localStorage.getItem('token') || null
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    }
   }
 });
 
@@ -19,7 +29,7 @@ const link = httpLink;
 // Create the apollo client
 export const apolloClient = new ApolloClient({
   // Tells Apollo to use the link chain with the http link we set up.
-  link,
+  link: authLink.concat(httpLink),
   // Handles caching of results and mutations.
   cache: new InMemoryCache(),
   // Useful if you have the Apollo DevTools installed in your browser.

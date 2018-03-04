@@ -1,8 +1,8 @@
 <template>
  <b-container>
-   <b-row align-v='center' v-if="registrationSuccess === null">
+   <b-row align-v='center' v-if="registrationSuccess !== true">
      <b-col class='container' cols='10' offset='1'  sm='8' offset-sm='2' md='6' offset-md='3'  align-v='center'>        
-        <b-form class='text-white font-weight-bold login-form' @submit="clicked" @reset="clicked" v-if='true'>
+        <b-form class='text-white font-weight-bold login-form' @submit.prevent="clicked" @reset="clicked" v-if='true'>
           <b-form-group id='igName'
                         label='Nome:'>
             <b-form-input id='inputName'
@@ -50,8 +50,10 @@
                       placeholder='Confirme sua Senha'>
         </b-form-input>
         </b-form-group>
-          <b-button class='text-white' :disabled="sent" type="submit" variant='primary'>Enviar</b-button>
-           <b-progress v-if="sent" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
+          <b-button class='text-white' :disabled="sent && registrationSuccess === null" type="submit" variant='primary'>Enviar</b-button>
+          <b-progress v-if="sent && registrationSuccess === null" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
+          <b-alert dismissible :show="sent && registrationSuccess === false"
+             variant="danger"> Não foi possível realizar seu cadastro.</b-alert>
         </b-form>
       </b-col>
     </b-row>
@@ -87,6 +89,14 @@ export default {
       }
     },
     ...mapGetters(['registrationSuccess']),
+  },
+  watch: {
+    registrationSuccess: function (oldVal, newVal) {
+      if(newVal === true){
+        Object.assign(this.$data, this.$options.data());
+        sent = false;
+      }
+    }
   },
   data() {
     return {

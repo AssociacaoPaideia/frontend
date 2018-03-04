@@ -19,21 +19,6 @@ export default {
     WizardProcess,
   },
   computed: {
-    isNameValid() {
-      return this.form.name.length > 5;
-    },
-    invalidNameText() {
-      if (!this.isNameValid && this.form.name.length > 0) {
-        return 'Por favor, insira um nome com mais de 5 caracteres';
-      }
-      return '';
-    },
-    validNameText() {
-      if (this.isNameValid) {
-        return '';
-      }
-      return '';
-    },
     steps() {
       return [{ name: 'Dados Basicos', href: '/login', done: (this.$route.name !== 'BasicInfo'), active: (this.$route.name === 'BasicInfo') },
               { name: 'Dados Adicionais', href: '/login', done: (this.$route.name === 'SocialEco'), active: (this.$route.name === 'AdditionalInfo') },

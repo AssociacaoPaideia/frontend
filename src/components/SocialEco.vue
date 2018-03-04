@@ -25,13 +25,13 @@
 
         <b-form-group id="fieldset1" label="Escolariadade do Pai"
             label-for="input1" >
-        <b-form-input type="text" v-model="form.intendedCollege" placeholder="Pai"></b-form-input>
+        <b-form-input type="text" v-model="form.intendedCollege" placeholder="Ex.: Fundamental Completo"></b-form-input>
        </b-form-group>
 
 
         <b-form-group id="fieldset1" label="Escolariadade da Mãe"
             label-for="input1" >
-        <b-form-input type="text" v-model="form.EnemGrade" placeholder="Mãe"></b-form-input>
+        <b-form-input type="text" v-model="form.EnemGrade" placeholder="Ex.: Fundamental Inompleto"></b-form-input>
        </b-form-group>
       </b-form>
       </b-col>

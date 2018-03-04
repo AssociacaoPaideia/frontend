@@ -2,14 +2,14 @@
 <b-container class='activation'>
     <b-row align-h="center" align-v="center" v-if="!token || activationSuccess === false">
         <h1 style="text-align:center"> 😥 <br/> <strong> Ops, algo deu errado! </strong>  </h1>
-        <h3 style="text-align:center"> Não foi possível ativar sua conta. Verifique se você copiou o link corretamente.</h3>
+        <h3 style="text-align:center"> Não foi possível ativar sua conta. Verifique se você copiou o link corretamente ou se já realizou a sua ativação.</h3>
     </b-row>
     <b-row align-h="center" align-v="center" v-else-if="token && activationSuccess">
         <h1 style="text-align:center"> 😍🎊🎉 <br/> <strong> Sua conta foi ativada com sucesso! </strong>  </h1>
         <h3> Acesse-a utilizando a opção na barra superior. </h3>
     </b-row>    
     <b-row align-h="center" align-v="center" v-else-if="activationSuccess===null">            
-        <b-progress :value="100" variant="success" striped :animated="true" class="mb-2"></b-progress>
+        <b-progress :value="100" :max="100" variant="success" striped :animated="true" class="mb-2"></b-progress>
     </b-row>
 </b-container>
 </template>
