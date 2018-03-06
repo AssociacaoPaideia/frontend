@@ -3,4 +3,5 @@ sudo: false
 node_js:
   - "node"
 install:
+  - npm install
   - npm run build
