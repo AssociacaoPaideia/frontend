@@ -11,7 +11,7 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "build": "npm install && node build/build.js && http-server dist/ -p 80"
+    "build": "npm install && node build/build.js && node web.js"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.1.5",
