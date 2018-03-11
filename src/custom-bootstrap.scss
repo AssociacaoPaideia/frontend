@@ -27,6 +27,8 @@ $theme-colors: (
 // Override info button color
 $btn-info-color:    darken($brand-info, 25);
 
+$text-muted: $white;
+
 // Override info alert background color
 $state-info-bg:     lighten($brand-info, 45);
 

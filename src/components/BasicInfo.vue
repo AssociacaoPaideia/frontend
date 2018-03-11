@@ -2,7 +2,7 @@
   <b-container>
    <b-row align-v="center">
      <b-col cols='12' offset="0" sm='10'  offset-sm='1' md='8' offset-md="2"  lg='6' offset-lg="3"  align-v="center">        
-      <b-form class="text-white font-weight-bold login-form" @submit="send($event)" @reset="send($event)">
+      <b-form class="text-white font-weight-bold login-form" @submit.prevent="clicked" @reset="clicked">
        <b-form-group id="fieldset1" label="Data de Nascimento:"
             label-for="input1" >
         <b-form-input type="date" v-model="form.birthDate" placeholder="Data de Nascimento"></b-form-input>
@@ -10,17 +10,21 @@
        
        <b-form-group id="fieldset1" label="Cidade De Nascimento"
             label-for="input1" >
-        <b-form-input type="text" v-model="form.address" placeholder="Ex.: Louveira"></b-form-input>
+        <b-form-input type="text" v-model="form.birthPlace" placeholder="Ex.: Louveira"></b-form-input>
        </b-form-group>
 
         <b-form-group id="fieldset1" label="Telefone"
             label-for="input1" >
-            <the-mask class='form-control' placeholder="(19) 9 9999-9999" v-model="form.tel" :mask="['(##) ####-####', '(##) #####-####']" />
+            <the-mask class='form-control' placeholder="(19) 9 9999-9999" v-model="form.phone" :mask="['(##) ####-####', '(##) #####-####']" />
        </b-form-group>
 
         <b-form-group id="fieldset1" label="CPF"
             label-for="input1" >
           <the-mask class='form-control'  placeholder="999.999.999-99" v-model="form.cpf" :mask="['###.###.###-##']" />
+           <b-form-text id="inputLiveHelp">
+            <!-- this is a form text block (formerly known as help block) -->
+            Caso o dígito do seu CPF terminar em "x", coloque "0" ao invéz.
+          </b-form-text>
         </b-form-group>
 
         <b-form-group id="fieldsetRg" label="RG"
@@ -30,14 +34,32 @@
 
         <b-form-group id="fieldCitizenCard" label="Cartão Cidadão (Digitalizado)"
             label-for="Cartão Cidadão" >
-        <b-form-file @change="uploadCitizenCard" accept="image/*" :state="Boolean(form.citizenCard)" placeholder="Escolha o arquivo digitalizado..."></b-form-file>
+            <b-form-file @change="uploadCitizenCard" accept="image/*" :state="invalidCitizardCardFile === null"
+                         aria-describedby="fieldCitizenCardFeedback" placeholder="Escolha o arquivo digitalizado..."></b-form-file>
+            <b-form-invalid-feedback id="fieldCitizenCardFeedback">
+              <!-- This will only be shown if the preceeding input has an invalid state -->
+              {{this.files.citizenCard}}
+            </b-form-invalid-feedback>
+            <b-form-text id="inputLiveHelp">
+            <!-- this is a form text block (formerly known as help block) -->
+            É necessário que o arquivo seja uma imagem.
+          </b-form-text>
         </b-form-group>
 
         <b-form-group id="fieldPhoto" label="Foto (Pode ser uma selfie!)"
             label-for="Foto" >
-          <b-form-file @change="uploadSelfie" accept="image/*" :state="Boolean(form.photo)" placeholder="Escolha uma foto..."></b-form-file>
+          <b-form-file @change="uploadSelfie" accept="image/*" 
+                      :state="invaliPhotoFile !== '' "
+                      :invalid-feedback="invaliPhotoFile" placeholder="Escolha uma foto..."></b-form-file>
+                      <b-form-text id="inputLiveHelp">
+            <!-- this is a form text block (formerly known as help block) -->
+            É necessário que o arquivo seja uma imagem.
+          </b-form-text>
         </b-form-group>
         <b-button class='text-white'  type="submit" variant='primary'>Próximo Passo</b-button>
+        <b-progress v-if="sent && registrationSuccess === null" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
+          <b-alert dismissible :show="sent && registrationSuccess === false"
+             variant="danger"> Não foi possível realizar seu cadastro.</b-alert>
       </b-form>
       </b-col>
     </b-row>
@@ -46,12 +68,20 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import {TheMask} from 'vue-the-mask'
+import { reject } from 'async';
 
 export default {
   components: {TheMask},
   name: 'BasicInfo',
+  props: {
+    sent: false,
+  },
   data() {
     return {
+      files: {
+        citizenCard: null,
+        photo: null,
+      },
       form: {
         birthDate: '',
         birthPlace:'',
@@ -60,39 +90,56 @@ export default {
         cpf:'',
         rg: '',
         photo: null,
-        userId:'',
+        userId: ''
       },
     };
   },
   computed: {
-    ...mapGetters(['users']),
+    ...mapGetters(['authenticatedUser']),
+    invalidCitizardCardFile(){
+      return this.files.citizenCard;
+    },
+    invaliPhotoFile(){
+      return this.files.photo;
+    }
   },
   methods: {
-    ...mapActions(['getUsers']),
-    send(event){
-         if (event) {
-            event.preventDefault()
-         }
+    ...mapActions(['addSubscriber']),
+    clicked: function() {
+      debugger
+      this.form.userId = this.authenticatedUser.id;
+      this.addSubscriber(this.form);
+      this.sent = true;
     },
     loadPhoto: function (e) {
       return new Promise((resolve, reseject) => {
         const file = e.target.files[0]
-        console.log(e)
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          resolve(e.target.result)
-        };
-        reader.readAsDataURL(file);
-      })        
+        debugger
+        if (!file.type.includes("image/")) {
+          reject("Arquivo não é uma imagem.");
+        } else {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            resolve(e.target.result)
+          };
+          reader.readAsDataURL(file);
+        }
+      });
     },
     uploadSelfie: function (e){
       this.loadPhoto(e).then(img => {
         this.form.photo = img;
+        this.files.photo = null;
+      }).catch((reason) => {
+        this.files.photo = reason;
       });
     },
     uploadCitizenCard: function (e){
       this.loadPhoto(e).then(img => {
         this.form.citizenCard = img;
+        this.files.citizenCard = null;
+      }).catch((reason) => {
+        this.files.citizenCard = reason;
       });
     }
   },

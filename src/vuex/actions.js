@@ -90,33 +90,50 @@ const actions = {
   setToken({ commit }, token){
     commit(mutation.updateToken, token)
   },
-  addSubscriber({ commit, state, rootState }){
-    return rootState.apollo.watchQuery({
+  addSubscriber({ commit, state, rootState}, subscriber){
+    debugger
+    return rootState.apollo.mutate({
       // gql query
-      query: gql`query Authenticate($password: String!, $email: String!) {
-        authenticate(email: $email, password: $password){
-          token
+      mutation: gql`mutation addSubscriber($birthDate: String!
+        $birthPlace: String!
+        $phone: String!
+        $citizenCard: String!
+        $cpf: String!
+        $rg: String!
+        $photo: String!
+        $userId: Int!) {
+        addSubscriber(birthDate: $birthDate
+          birthPlace: $birthPlace
+          phone: $phone
+          citizenCard: $citizenCard
+          cpf: $cpf
+          rg: $rg
+          photo: $photo
+          userId: $userId){
+            id
         }
       }`,
       // Static parameters
       variables: {
-        email: login.email,
-        password: login.password,
+        birthDate: subscriber.birthDate,
+        birthPlace: subscriber.birthPlace,
+        phone: subscriber.phone,
+        citizenCard: subscriber.citizenCard,
+        cpf: subscriber.cpf,
+        rg: subscriber.rg,
+        photo: subscriber.photo,
+        userId: subscriber.userId,
       },
-    }).subscribe({
-      next(result) {
-        if(!result.data.authenticate){
-          return
+    }).then((result) => {
+        if(!result.data.addSubscriber && result.data.addSubscriber.id){
+          commit(mutation.subscribeError, "Erro ao cadastrar dados.");
+          return;
         }
-        
-        let token = result.data.authenticate.token || [];
-        commit(mutation.updateToken, token)
-        localStorage.setItem('token', token)
-      },
-      error(error){
+        commit(mutation.subscribeSuccess, result.data.addSubscriber);
+      }).catch((error) => {
         // eslint-disable-next-line
+        commit(mutation.subscribeError, "Erro ao cadastrar dados.")
         console.log('there was an error sending the query', error);
-      },
     });
   },
   addUser({ commit, state, rootState }, user){
@@ -137,7 +154,7 @@ const actions = {
         lastName:user.lastName
       },
     }).then((result) => {
-        debugger
+        debugger;
         if(!result.data.addUser){
           commit(mutation.registrationSuccess, false);
         }
