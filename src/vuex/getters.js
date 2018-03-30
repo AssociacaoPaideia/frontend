@@ -19,6 +19,9 @@ const getters = {
   },
   loginErrMsg(state){
     return state.loginErrMsg;
+  },
+  subscribeSuccess(state){
+    return state.subscribeSuccess;
   }
 };
 

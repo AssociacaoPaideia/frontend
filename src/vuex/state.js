@@ -10,6 +10,8 @@ const state = {
   apollo: apolloClient,
   registrationSuccess: null,
   loginErrMsg: null,
+  subscribeError: null,
+  subscribeSuccess: null
 };
 
 export default state;

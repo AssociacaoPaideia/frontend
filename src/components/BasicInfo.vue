@@ -95,7 +95,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['authenticatedUser']),
+    ...mapGetters(['authenticatedUser','subscribeSuccess', 'registrationSuccess']),
     invalidCitizardCardFile(){
       return this.files.citizenCard;
     },
@@ -103,10 +103,17 @@ export default {
       return this.files.photo;
     }
   },
+   watch: {
+     subscribeSuccess :  function (val) {
+      if(val){
+        this.$router.push({ name: 'AdditionalInfo'})
+      }
+     }
+   },
   methods: {
     ...mapActions(['addSubscriber']),
     clicked: function() {
-      debugger
+      
       this.form.userId = this.authenticatedUser.id;
       this.addSubscriber(this.form);
       this.sent = true;
@@ -114,7 +121,7 @@ export default {
     loadPhoto: function (e) {
       return new Promise((resolve, reseject) => {
         const file = e.target.files[0]
-        debugger
+        
         if (!file.type.includes("image/")) {
           reject("Arquivo não é uma imagem.");
         } else {

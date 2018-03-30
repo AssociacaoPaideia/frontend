@@ -22,7 +22,14 @@ const mutations = {
   },
   [mutation.updateLoginErrMsg](state, value){
     state.loginErrMsg = value;
+  },
+  [mutation.subscribeError](state, value){
+    state.subscribeError = value;
+  },
+  [mutation.subscribeSuccess](state, value){
+    state.subscribeSuccess = value;
   }
+  
 };
 
 export default mutations;

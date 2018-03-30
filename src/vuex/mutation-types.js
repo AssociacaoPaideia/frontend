@@ -8,3 +8,5 @@ export const activationSuccess = 'activationSuccess';
 export const registrationSuccess = 'registrationSuccess';
 export const updateAuthUser = 'updateAuthUser';
 export const updateLoginErrMsg = 'updateLoginErrMsg';
+export const subscribeError = 'subscribeError'
+export const subscribeSuccess = 'subscribeSuccess'
