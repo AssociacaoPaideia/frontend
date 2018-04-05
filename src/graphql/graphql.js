@@ -8,7 +8,7 @@ import VueApollo from 'vue-apollo';
 // Create a new HttpLink to connect to your GraphQL API.
 // According to the Apollo docs, this should be an absolute URI.
 const httpLink = new HttpLink({
-  uri: 'https://paideia-backend.herokuapp.com/graphql',
+  uri: 'http://backend.associacaopaideia.org.br/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {

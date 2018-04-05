@@ -28,8 +28,13 @@ const mutations = {
   },
   [mutation.subscribeSuccess](state, value){
     state.subscribeSuccess = value;
-  }
-  
+  },
+  [mutation.subscribeActivationError](state, value){
+    state.subscribeActivationError = value;
+  },
+  [mutation.subscribeActivationSuccess](state, value){
+    state.subscribeActivationSuccess = value;
+  }, 
 };
 
 export default mutations;

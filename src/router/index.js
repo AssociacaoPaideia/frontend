@@ -12,10 +12,21 @@ import Footer from '@/components/Footer';
 import Index from '@/components/Index';
 import NotFound from '@/components/NotFound';
 import ActivateAccount from '@/components/ActivateAccount';
+import GForms from '@/components/GForms';
+import store from "../vuex/store"
 
 Vue.component('Footer', Footer);
 Vue.component('HeaderNav', HeaderNav);
 Vue.use(Router);
+
+const checkCanSubscribe = (to, from, next) => {
+    if(store.getters.isAuthenticated(store.state) && (store.getters.authenticatedUser(store.state) && !store.getters.authenticatedUser(store.state).isSubscribed)) {
+      debugger
+      next();
+      return
+    }
+    next('/');
+}
 
 export default new Router({
   routes: [
@@ -31,27 +42,21 @@ export default new Router({
       path: '/subscribe',
       name: 'Subscribe',
       component: Subscribe,
+      beforeEnter: checkCanSubscribe,
       children: [
         {
           path: 'basic',
           name: 'BasicInfo',
           component: BasicInfo,
-        },
-        {
-          path: 'additional',
-          name: 'AdditionalInfo',
-          component: AdditionalInfo,
+          beforeEnter: checkCanSubscribe,
         },
         {
           path: 'social',
           name: 'SocialEco',
-          component: SocialEco,
+          component: GForms,
+          beforeEnter: checkCanSubscribe,
         },
       ],
-    }, {
-      path: '/wizard',
-      name: 'Wizard',
-      component: WizardProcess,
     }, {
       path: '/ativacao',
       name: 'ActivateAccount',

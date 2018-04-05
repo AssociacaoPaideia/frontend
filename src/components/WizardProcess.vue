@@ -18,8 +18,7 @@ export default {
   data() {
     return {
       stepsExample: [{ name: 'Dados Basicos', href: '/basic', done: false, active: true },
-      { name: 'Dados Adicionais', href: '/additional', done: false, active: false },
-      { name: 'Socioeconômico', href: '/social', done: false, active: false }],
+      { name: 'Dados Adicionais & Socioeconômico', href: '/social', done: false, active: false }],
     };
   },
   methods: {

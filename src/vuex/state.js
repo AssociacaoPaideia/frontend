@@ -11,7 +11,9 @@ const state = {
   registrationSuccess: null,
   loginErrMsg: null,
   subscribeError: null,
-  subscribeSuccess: null
+  subscribeSuccess: null,
+  subscribeActivationSuccess: null,
+  subscribeActivationError: null
 };
 
 export default state;

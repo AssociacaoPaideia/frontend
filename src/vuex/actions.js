@@ -8,7 +8,7 @@ const actions = {
   },
   getLoggedUser({commit, state, rootState}){
     return rootState.apollo.watchQuery({
-      query: gql`query authenticatedUser { authenticatedUser{ id firstName lastName email } }`
+      query: gql`query authenticatedUser { authenticatedUser{ id firstName lastName email isSubscribed} }`
     }).subscribe({
       next(result){
         if(result.data.authenticatedUser){
@@ -181,6 +181,36 @@ const actions = {
       commit(mutation.activationSuccess, false);
     });
   },
+  validateSubscriber({commit, state, rootState}, userId){
+    return rootState.apollo.watchQuery({
+        query: gql`query validateSubscriber($userId: Int){ 
+          validateSubscriber(userId: $userId)
+        }`,
+        variables: {
+          userId: userId
+        }
+    }).subscribe({
+      next(result){
+        debugger;
+        if(!result.data){
+          return;
+        }
+
+        if(result.data.validateSubscriber){
+          commit(mutation.subscribeActivationSuccess, result.data.validateSubscriber);
+          actions.getLoggedUser({ commit, state, rootState });
+        } else {
+          commit(mutation.subscribeActivationError, 
+            "Nâo foi encontrado seu registro de preenchimento socioeconômico.");
+        }
+      },
+      error(err){
+        debugger;
+        commit(mutation.subscribeActivationError, 
+          "Nâo foi possível validar seu dados.");
+      }
+    });
+  }
 };
 
 export default actions;

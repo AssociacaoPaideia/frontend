@@ -1,10 +1,14 @@
 <template>
   <b-container>
-    <b-row align-h="center">
- 
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd04XsP8j3eUuvyvE7dGXi5AvtGkj9LnqiYb5ku7yycGfqvpQ/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
-   <b-button class='text-white'  type="submit" variant='primary'>Confirmar Cadastro</b-button>
+    <b-row align-h="center"> 
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSexEyrL6aQ19zH8GB2qyQRxOuDswQPsSH3iUTVI0IDdR5L2iA/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
    </b-row>
+    <b-row align-h="center"> 
+       <b-button class='text-white'  type="submit" variant='primary'>Confirmar Cadastro</b-button>
+       <b-alert dismissible :show="loginErrMsg !== null"
+             variant="danger"> {{loginErrMsg}}
+        </b-alert>
+    </b-row>
    <b-row  v-if='false' align-v="center">
      <b-col cols='12' offset="0" sm='10'  offset-sm='1' md='8' offset-md="2"  lg='6' offset-lg="3"  align-v="center">        
       <b-form class="text-white font-weight-bold login-form">

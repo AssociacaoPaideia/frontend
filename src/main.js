@@ -8,7 +8,9 @@ import App from './App';
 import router from './router';
 import store from './vuex/store';
 import { apolloClient, apolloProvider }  from './graphql/graphql';
+import cors from 'cors';
 
+Vue.use(cors);
 Vue.config.productionTip = false;
 Vue.use(Vuex);
 Vue.use(VueApollo);

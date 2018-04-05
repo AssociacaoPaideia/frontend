@@ -28,7 +28,8 @@
               <b-nav-item href="#/news">Notícias</b-nav-item>
               <b-nav-item href="#/contato">Contato</b-nav-item>
               <b-nav-item href="#/signup" @click="registerClicked" v-if="!isAuthenticated" >Registrar-se</b-nav-item>
-              <b-nav-item href="#/subscribe/basic" v-if="isAuthenticated" >Inscrição Cursinho 2018</b-nav-item>
+              <b-nav-item href="#/subscribe/basic" v-if="isAuthenticated && authenticatedUser && !authenticatedUser.isSubscribed" >Inscrição Cursinho 2018</b-nav-item>
+              <b-nav-item href="#" disabled v-if="authenticatedUser && authenticatedUser.isSubscribed" >Inscrição Cursinho 2018 realizada</b-nav-item>
               
             </b-navbar-nav>
 

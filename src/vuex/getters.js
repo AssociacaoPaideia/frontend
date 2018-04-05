@@ -22,6 +22,12 @@ const getters = {
   },
   subscribeSuccess(state){
     return state.subscribeSuccess;
+  },
+  subscribeActivationSuccess(state){
+    return state.subscribeActivationSuccess;
+  },
+  subscribeActivationError(state){
+    return state.subscribeActivationError;
   }
 };
 

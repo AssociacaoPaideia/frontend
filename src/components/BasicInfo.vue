@@ -106,7 +106,7 @@ export default {
    watch: {
      subscribeSuccess :  function (val) {
       if(val){
-        this.$router.push({ name: 'AdditionalInfo'})
+        this.$router.push({ name: 'SocialEco'})
       }
      }
    },
