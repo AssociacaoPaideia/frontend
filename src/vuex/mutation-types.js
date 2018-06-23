@@ -12,3 +12,5 @@ export const subscribeError = 'subscribeError';
 export const subscribeSuccess = 'subscribeSuccess';
 export const subscribeActivationError = 'subscribeActivationError';
 export const subscribeActivationSuccess = 'subscribeActivationSuccess';
+export const isSubscriptionAvailableSuccess = 'isSubscriptionAvailableSuccess';
+export const isSubscriptionAvailableError = 'isSubscriptionAvailableError'; 

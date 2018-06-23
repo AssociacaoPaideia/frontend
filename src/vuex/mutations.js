@@ -35,6 +35,12 @@ const mutations = {
   [mutation.subscribeActivationSuccess](state, value){
     state.subscribeActivationSuccess = value;
   }, 
+  [mutation.isSubscriptionAvailableSuccess](state, value){
+    state.isSubscriptionAvailable = value
+  },
+  [mutation.isSubscriptionAvailableError](state, value){
+    state.isSubscriptionAvailable = false
+  }
 };
 
 export default mutations;

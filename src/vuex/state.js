@@ -13,7 +13,8 @@ const state = {
   subscribeError: null,
   subscribeSuccess: null,
   subscribeActivationSuccess: null,
-  subscribeActivationError: null
+  subscribeActivationError: null,
+  isSubscriptionAvailable: false,
 };
 
 export default state;

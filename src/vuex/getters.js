@@ -28,6 +28,9 @@ const getters = {
   },
   subscribeActivationError(state){
     return state.subscribeActivationError;
+  },
+  isSubscriptionAvailable(state){
+    return state.isSubscriptionAvailable;
   }
 };
 

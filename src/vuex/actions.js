@@ -11,6 +11,7 @@ const actions = {
       query: gql`query authenticatedUser { authenticatedUser{ id firstName lastName email isSubscribed} }`
     }).subscribe({
       next(result){
+        debugger
         if(result.data.authenticatedUser){
           commit(mutation.updateAuthUser, result.data.authenticatedUser);
         } else {
@@ -207,6 +208,29 @@ const actions = {
       error(err){
         debugger;
         commit(mutation.subscribeActivationError, 
+          "Nâo foi possível validar seu dados.");
+      }
+    });
+  },
+  isSubscriptionAvailable({commit, state, rootState}){
+    return rootState.apollo.watchQuery({
+        query: gql`{isSubscriptionAvailable}`,
+        variables: {}
+    }).subscribe({
+      next(result){
+        debugger;
+        if(!result.data){
+          return;
+        }
+
+        if(result.data.isSubscriptionAvailable){
+          commit(mutation.isSubscriptionAvailableSuccess, result.data.isSubscriptionAvailable);
+          actions.getLoggedUser({ commit, state, rootState });
+        }
+      },
+      error(err){
+        debugger;
+        commit(mutation.isSubscriptionAvailableError, 
           "Nâo foi possível validar seu dados.");
       }
     });

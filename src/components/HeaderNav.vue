@@ -27,15 +27,14 @@
               </b-nav-item-dropdown>            
               <b-nav-item href="#/news">Notícias</b-nav-item>
               <b-nav-item href="#/contato">Contato</b-nav-item>
-              <b-nav-item href="#/signup" @click="registerClicked" v-if="!isAuthenticated" >Registrar-se</b-nav-item>
-              <b-nav-item href="#/subscribe/basic" v-if="isAuthenticated && authenticatedUser && !authenticatedUser.isSubscribed" >Inscrição Cursinho 2018</b-nav-item>
-              <b-nav-item href="#" disabled v-if="authenticatedUser && authenticatedUser.isSubscribed" >Inscrição Cursinho 2018 realizada</b-nav-item>
+              <b-nav-item href="#/signup" @click="registerClicked" v-if="!isAuthenticated && isSubscriptionAvailable" >Registrar-se</b-nav-item>
+              <b-nav-item href="#/subscribe/basic" v-if="isAuthenticated && authenticatedUser && !authenticatedUser.isSubscribed && isSubscriptionAvailable" >Inscrição Cursinho 2018</b-nav-item>
+              <b-nav-item href="#" disabled v-if="authenticatedUser && authenticatedUser.isSubscribed && isSubscriptionAvailable" >Inscrição Cursinho 2018 realizada</b-nav-item>
               
             </b-navbar-nav>
 
             <b-navbar-nav class="ml-auto">
               <b-nav-item-dropdown v-if="isAuthenticated && authenticatedUser" :text="'Olá, ' +  authenticatedUser.firstName +'!'" right>
-                <b-dropdown-item href="#/perfil">Perfil</b-dropdown-item>
                 <b-dropdown-item href="#">Sair</b-dropdown-item> 
               </b-nav-item-dropdown>
               <b-nav-item-dropdown v-if="!isAuthenticated" text="Acessar sua conta" right>
@@ -57,14 +56,8 @@ export default {
   name: 'HeaderNav',
   components: { Login },
   computed: {
-    ...mapGetters(['isAuthenticated', 'authenticatedUser','registrationSuccess']),
-    ...mapActions(['resetRegistration'])
-  },
-  watch: {
-    isAuthenticated: function(oldVal, newVal){
-      if(oldVal == false && newVal == true){
-      }
-    }
+    ...mapGetters(['isAuthenticated', 'authenticatedUser','registrationSuccess', 'isSubscriptionAvailable']),
+    ...mapActions(['resetRegistration']),
   },
   methods: {
     registerClicked() {

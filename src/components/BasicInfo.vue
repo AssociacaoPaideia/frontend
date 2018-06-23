@@ -5,22 +5,22 @@
       <b-form class="text-white font-weight-bold login-form" @submit.prevent="clicked" @reset="clicked">
        <b-form-group id="fieldset1" label="Data de Nascimento:"
             label-for="input1" >
-        <b-form-input type="date" v-model="form.birthDate" placeholder="Data de Nascimento"></b-form-input>
+        <b-form-input type="date" required v-model="form.birthDate" placeholder="Data de Nascimento"></b-form-input>
        </b-form-group>
        
        <b-form-group id="fieldset1" label="Cidade De Nascimento"
             label-for="input1" >
-        <b-form-input type="text" v-model="form.birthPlace" placeholder="Ex.: Louveira"></b-form-input>
+        <b-form-input type="text" required v-model="form.birthPlace" placeholder="Ex.: Louveira"></b-form-input>
        </b-form-group>
 
         <b-form-group id="fieldset1" label="Telefone"
             label-for="input1" >
-            <the-mask class='form-control' placeholder="(19) 9 9999-9999" v-model="form.phone" :mask="['(##) ####-####', '(##) #####-####']" />
+            <the-mask class='form-control' required placeholder="(19) 9 9999-9999" v-model="form.phone" :mask="['(##) ####-####', '(##) #####-####']" />
        </b-form-group>
 
         <b-form-group id="fieldset1" label="CPF"
             label-for="input1" >
-          <the-mask class='form-control'  placeholder="999.999.999-99" v-model="form.cpf" :mask="['###.###.###-##']" />
+          <the-mask class='form-control' required  placeholder="999.999.999-99" v-model="form.cpf" :mask="['###.###.###-##']" />
            <b-form-text id="inputLiveHelp">
             <!-- this is a form text block (formerly known as help block) -->
             Caso o dígito do seu CPF terminar em "x", coloque "0" ao invéz.
@@ -29,12 +29,12 @@
 
         <b-form-group id="fieldsetRg" label="RG"
             label-for="RG" >
-            <the-mask class='form-control'  placeholder="999.999.999-9" v-model="form.rg" :mask="['##.###.###-#','###.###.###-#']" />
+            <the-mask class='form-control' required placeholder="999.999.999-9" v-model="form.rg" :mask="['##.###.###-#','###.###.###-#']" />
         </b-form-group>
 
         <b-form-group id="fieldCitizenCard" label="Cartão Cidadão (Digitalizado)"
             label-for="Cartão Cidadão" >
-            <b-form-file @change="uploadCitizenCard" accept="image/*" :state="invalidCitizardCardFile === null"
+            <b-form-file required @change="uploadCitizenCard" accept="image/*" :state="invalidCitizardCardFile === null"
                          aria-describedby="fieldCitizenCardFeedback" placeholder="Escolha o arquivo digitalizado..."></b-form-file>
             <b-form-invalid-feedback id="fieldCitizenCardFeedback">
               <!-- This will only be shown if the preceeding input has an invalid state -->
@@ -48,7 +48,7 @@
 
         <b-form-group id="fieldPhoto" label="Foto (Pode ser uma selfie!)"
             label-for="Foto" >
-          <b-form-file @change="uploadSelfie" accept="image/*" 
+          <b-form-file required @change="uploadSelfie" accept="image/*" 
                       :state="invaliPhotoFile !== '' "
                       :invalid-feedback="invaliPhotoFile" placeholder="Escolha uma foto..."></b-form-file>
                       <b-form-text id="inputLiveHelp">
