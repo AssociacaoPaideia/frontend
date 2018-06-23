@@ -59,7 +59,7 @@
                 Museus, Universidades entre outros.</p>
             </b-col>
             <b-col>
-                <h6 class="title center">Cursinho On Line</h6><p>Plantão de dúvidas virtual (em implantação).</p>
+                <h6 class="title center">Cursinho Online</h6><p>Plantão de dúvidas virtual (em implantação).</p>
             </b-col>
         </b-row>
     </b-container>
@@ -99,9 +99,19 @@ h2.center.title{
 }
 .compress{/*  Used to compress the table contents  */
     margin: 0 auto;
-    padding: 0 15px 0 15px;
+    padding: 0 20px 0 20px;
 }
 .center{
     text-align: center;
+}
+@media (min-width:340px) and (max-width: 400px){
+    .compress{
+    padding: 0 60px 0 60px;
+    }
+}
+@media (max-width: 339px){
+    .compress{
+    padding: 0 30px 0 30px;
+    }
 }
 </style>
