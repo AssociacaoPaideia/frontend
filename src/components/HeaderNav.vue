@@ -21,10 +21,7 @@
           <b-collapse is-nav id="nav_collapse">
 
             <b-navbar-nav>
-              <b-nav-item-dropdown text="Sobre" left>
-                <b-dropdown-item href="#/about/paideia">Associação Paideia</b-dropdown-item>
-                <b-dropdown-item href="#/about/focus">Focus Cursinho</b-dropdown-item>
-              </b-nav-item-dropdown>            
+              <b-nav-item href="#/about/paideia">Sobre</b-nav-item>
               <b-nav-item href="#/news">Notícias</b-nav-item>
               <b-nav-item href="#/contato">Contato</b-nav-item>
               <b-nav-item href="#/signup" @click="registerClicked" v-if="!isAuthenticated && isSubscriptionAvailable" >Registrar-se</b-nav-item>

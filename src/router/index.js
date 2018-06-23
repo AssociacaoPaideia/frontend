@@ -14,7 +14,6 @@ import NotFound from '@/components/NotFound';
 import ActivateAccount from '@/components/ActivateAccount';
 import GForms from '@/components/GForms';
 import AboutPaideia from '@/components/AboutPaideia';
-import AboutFocus from '@/components/AboutFocus';
 import store from "../vuex/store"
 
 Vue.component('Footer', Footer);
@@ -68,10 +67,6 @@ export default new Router({
       path: '/about/paideia',
       name: 'SobrePaideia',
       component: AboutPaideia,
-    },{
-      path: '/about/focus',
-      name: 'SobreFocus',
-      component: AboutFocus,
     },{
       path: '*',
       name: 'NotFound',
