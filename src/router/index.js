@@ -13,6 +13,8 @@ import Index from '@/components/Index';
 import NotFound from '@/components/NotFound';
 import ActivateAccount from '@/components/ActivateAccount';
 import GForms from '@/components/GForms';
+import AboutPaideia from '@/components/AboutPaideia';
+import AboutFocus from '@/components/AboutFocus';
 import store from "../vuex/store"
 
 Vue.component('Footer', Footer);
@@ -62,7 +64,15 @@ export default new Router({
       name: 'ActivateAccount',
       component: ActivateAccount,
       props: (route) => ({ token: route.query.token }),
-    }, {
+    },{
+      path: '/about/paideia',
+      name: 'SobrePaideia',
+      component: AboutPaideia,
+    },{
+      path: '/about/focus',
+      name: 'SobreFocus',
+      component: AboutFocus,
+    },{
       path: '*',
       name: 'NotFound',
       component: NotFound,
