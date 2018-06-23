@@ -14,6 +14,7 @@ import NotFound from '@/components/NotFound';
 import ActivateAccount from '@/components/ActivateAccount';
 import GForms from '@/components/GForms';
 import AboutPaideia from '@/components/AboutPaideia';
+import News from '@/components/News';
 import store from "../vuex/store"
 
 Vue.component('Footer', Footer);
@@ -64,9 +65,13 @@ export default new Router({
       component: ActivateAccount,
       props: (route) => ({ token: route.query.token }),
     },{
-      path: '/about/paideia',
-      name: 'SobrePaideia',
+      path: '/about',
+      name: 'Sobre',
       component: AboutPaideia,
+    },{
+      path: '/news',
+      name: 'News',
+      component: News,
     },{
       path: '*',
       name: 'NotFound',

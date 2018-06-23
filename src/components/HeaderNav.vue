@@ -21,7 +21,7 @@
           <b-collapse is-nav id="nav_collapse">
 
             <b-navbar-nav>
-              <b-nav-item href="#/about/paideia">Sobre</b-nav-item>
+              <b-nav-item href="#/about">Sobre</b-nav-item>
               <b-nav-item href="#/news">Notícias</b-nav-item>
               <b-nav-item href="#/contato">Contato</b-nav-item>
               <b-nav-item href="#/signup" @click="registerClicked" v-if="!isAuthenticated && isSubscriptionAvailable" >Registrar-se</b-nav-item>

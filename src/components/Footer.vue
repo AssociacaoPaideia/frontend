@@ -5,7 +5,7 @@
             Copyright © Associação Paideia - Todos os direitos reservados
         </b-col>
         <b-col align-h='end'>
-            <a href="https://www.facebook.com/focuscursinho/?ref=br_rs" target="_blank"><b-img right src="http://2015.igem.org/wiki/images/e/ed/Harvard2015Facebookwhite.png" width="38" height="38" style="display: block;" border="0" /></a>
+            <a href="https://www.facebook.com/focuscursinho/" target="_blank"><b-img right src="http://2015.igem.org/wiki/images/e/ed/Harvard2015Facebookwhite.png" width="38" height="38" style="display: block;" border="0" /></a>
         </b-col>
       </b-row>
   </b-container>

@@ -1,13 +1,15 @@
 <template>
-<b-container>
-    <center> <h1> 😨 <br/> A página que você está procurando não existe.  </h1></center>
-</b-container>
+    <b-container>
+        <center> <br/> <h1> 😨 <br><br/> A página que você está procurando não existe.  </h1></center>
+    </b-container>
 </template>
 <script>
 export default {
-  
+
 }
 </script>
-<style lang="sass" scoped>
+
+<style lang='scss'>
+@import '../custom-bootstrap.scss';
 
 </style>
