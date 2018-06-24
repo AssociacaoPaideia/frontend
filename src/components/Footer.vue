@@ -29,6 +29,6 @@ export default {
     bottom: 0;
     width: 100%;
     padding: 15px;
-    margin-top: 70px;
+    margin-top: 50px;
 }
 </style>

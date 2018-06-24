@@ -15,6 +15,7 @@ import ActivateAccount from '@/components/ActivateAccount';
 import GForms from '@/components/GForms';
 import AboutPaideia from '@/components/AboutPaideia';
 import News from '@/components/News';
+import UseTerm from '@/components/UseTerm';
 import store from "../vuex/store"
 
 Vue.component('Footer', Footer);

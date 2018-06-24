@@ -6,14 +6,18 @@
       <b-row align-h="center" class='buttons'>
           <b-col cols="12" md="4">
               <center>
-                <b-img rounded blank blank-color="#fff"  width="100" height="100"/><br/>
-                <span class='btn'>INSTRUÇÕES</span>
+                  <figure>
+                    <img src="/src/assets/instrucoes.svg" rounded blank blank-color="#fff"  width="100" height="100"/><br/>
+                    <figcaption class='btn'>INSTRUÇÕES</figcaption>
+                  </figure>
               </center>
           </b-col>               
           <b-col cols="12" md="4">
               <center>
-                <b-img blank rounded blank-color="#fff"  width="100" height="100"/><br/>
-                <span class='btn'>EDITAL/MANUAL</span>
+                <figure>
+                  <img src="/src/assets/edital.svg" blank rounded blank-color="#fff"  width="100" height="100"/><br/>
+                  <figcaption class='btn'>EDITAL/MANUAL</figcaption>
+                </figure>
               </center>
           </b-col>
           <b-col v-if="isSubscriptionAvailable" cols="12" md="4">
@@ -26,9 +30,11 @@
           </b-col>
           <b-col cols="12" md="4" :href="requerimentoUrl" >
               <center>
-                <a  :href="requerimentoUrl" target="_blank">
-                  <b-img :href="requerimentoUrl" blank rounded blank-color="#fff"  width="100" height="100"/><br/>
-                  <span  :href="requerimentoUrl" class='btn'>REQUERIMENTO</span>
+                <a :href="requerimentoUrl" target="_blank">
+                    <figure>
+                        <img align-v="center" src="/src/assets/requerimento.svg" blank rounded blank-color="#fff"  width="100" height="100"><br/>
+                        <figcaption  :href="requerimentoUrl" class='btn'>REQUERIMENTO</figcaption>
+                    </figure>
                 </a>
               </center>
           </b-col>

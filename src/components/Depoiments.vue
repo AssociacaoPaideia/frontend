@@ -11,6 +11,7 @@
         <b-col id='segundo' cols="12" md="5" class="dep">Aos professores, queridos professores, meu muito obrigada. Muito obrigada pelo interesse em formar pessoas muito mais que formar alunos. Muito obrigada por todas as vezes que nos escutaram...      
         </b-col>
     </b-row>
+    <br>
     <center><a href="#/depoimentos" class="button">Ver mais depoimentos</a></center>
 </b-container>
 </template>
