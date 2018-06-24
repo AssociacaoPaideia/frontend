@@ -11,7 +11,7 @@
         <b-col id='segundo' cols="12" md="5" class="dep">Aos professores, queridos professores, meu muito obrigada. Muito obrigada pelo interesse em formar pessoas muito mais que formar alunos. Muito obrigada por todas as vezes que nos escutaram...      
         </b-col>
     </b-row>
-    <br>
+    <br><br>
     <center><a href="#/depoimentos" class="button">Ver mais depoimentos</a></center>
 </b-container>
 </template>
@@ -23,15 +23,22 @@ export default {
 <style lang='scss'>
 @import '../custom-bootstrap.scss';
 .button{
-    
+    width: 40%;
     padding: 20px;
     color: $white;
     background-color: $paideia-purple;
     transition: .3s all;
 }
 .button:hover{
+    border-radius: 10px;
+    color: white;
     text-decoration: none;
     transition: .3s;
+}
+.button:active{
+    -webkit-box-shadow: 0px 5px 50px 5px $paideia-dark-green;
+       -moz-box-shadow: 0px 5px 50px 5px $paideia-dark-green;
+            box-shadow: 0px 5px 50px 5px $paideia-dark-green;
 }
 .title{
     color: $paideia-purple;
