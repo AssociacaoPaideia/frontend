@@ -16,18 +16,38 @@
                 <span class='btn'>EDITAL/MANUAL</span>
               </center>
           </b-col>
-          <b-col cols="12" md="4">
+          <b-col v-if="isSubscriptionAvailable" cols="12" md="4">
               <center>
-                <b-img blank rounded blank-color="#fff"  width="100" height="100"/><br/>
-                <span class='btn'>INSCRIÇÃO</span>
+                <a  :href="inscricaoUrl"> 
+                    <b-img blank rounded blank-color="#fff"  width="100" height="100"/><br/>
+                    <span class='btn'>INSCRIÇÃO</span>
+                </a>
+              </center>
+          </b-col>
+          <b-col cols="12" md="4" :href="requerimentoUrl" >
+              <center>
+                <a  :href="requerimentoUrl" target="_blank">
+                  <b-img :href="requerimentoUrl" blank rounded blank-color="#fff"  width="100" height="100"/><br/>
+                  <span  :href="requerimentoUrl" class='btn'>REQUERIMENTO</span>
+                </a>
               </center>
           </b-col>
       </b-row>
   </b-container>
 </template>
 <script>
-export default {
-
+import { mapGetters, mapActions } from 'vuex'
+import { truncate } from 'fs';
+export default {  
+    computed: {
+        ...mapGetters(['isAuthenticated', 'isSubscriptionAvailable']),
+    },
+    data() {
+        return {
+            requerimentoUrl: "/static/REQUERIMENTO - 2018.pdf",
+            inscricaoUrl: this.isAuthenticated ? "#/subscribe/basic" : "#/signup"
+        }
+    }
 }
 </script>
 
