@@ -3,7 +3,7 @@
       <h3 class="header center">TERMO DE RESPONSABILIDADE - REGRAS DE FREQUÊNCIA E CONDUTA</h3>
         <h5 class="center">Ao se inscrever no CURSINHO FOCUS da ASSOCIAÇÃO PAIDEIA, 
             o (a) aluno (a) assume a responsabilidade de cumprir e respeitar as seguintes normas:</h5>
-        <ol>
+        <ol class="terms-ol">
          <li>A Frequência é obrigatória e condição de permanência do (a) aluno (a) no curso preparatório.</li>
          <li>O (A) aluno (a) que faltar nos dois primeiros dias de aula na primeira semana de curso será automaticamente excluído.</li>
          <li>Também será eliminado (a) o (a) aluno (a) que faltar duas vezes consecutivas ou alternadas na mesma semana, nas
@@ -75,7 +75,7 @@ export default {
 </script>
 <style lang="scss">
 @import '../custom-bootstrap.scss';
-ol { 
+.terms-ol{ 
     background-color: rgb(224, 224, 224);
     counter-reset: item;
     padding-right: 40px;
@@ -83,17 +83,16 @@ ol {
     padding-bottom: 10px;
     border-radius: 8px;
  }
-        ol li { 
-            display: block;
-            margin-bottom: 10px;
-            text-align: justify;
-         }
-        ol li:before {
-            content: counter(item) ". ";
-            counter-increment: item;
-            
-            font-weight: bold;
-        }
+ol li { 
+    display: block;
+     margin-bottom: 10px;
+    text-align: justify;
+}
+ol li:before {
+    content: counter(item) ". ";
+    counter-increment: item;
+    font-weight: bold;
+}
 .header {
     padding: 15px;
     margin-bottom: 10px;

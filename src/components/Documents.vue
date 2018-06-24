@@ -7,7 +7,7 @@
           <b-col cols="12" md="4">
               <center>
                   <figure>
-                    <img src="/src/assets/instrucoes.svg" rounded blank blank-color="#fff"  width="100" height="100"/><br/>
+                    <img src="../assets/instrucoes.svg" rounded blank blank-color="#fff"  width="100" height="100"/><br/>
                     <figcaption class='btn'>INSTRUÇÕES</figcaption>
                   </figure>
               </center>
@@ -15,7 +15,7 @@
           <b-col cols="12" md="4">
               <center>
                 <figure>
-                  <img src="/src/assets/edital.svg" blank rounded blank-color="#fff"  width="100" height="100"/><br/>
+                  <img src="../assets/edital.svg" blank rounded blank-color="#fff"  width="100" height="100"/><br/>
                   <figcaption class='btn'>EDITAL/MANUAL</figcaption>
                 </figure>
               </center>
@@ -32,7 +32,7 @@
               <center>
                 <a :href="requerimentoUrl" target="_blank">
                     <figure>
-                        <img align-v="center" src="/src/assets/requerimento.svg" blank rounded blank-color="#fff"  width="100" height="100"><br/>
+                        <img align-v="center" src="../assets/requerimento.svg" blank rounded blank-color="#fff"  width="100" height="100"><br/>
                         <figcaption  :href="requerimentoUrl" class='btn'>REQUERIMENTO</figcaption>
                     </figure>
                 </a>
