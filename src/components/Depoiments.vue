@@ -23,7 +23,7 @@ export default {
 <style lang='scss'>
 @import '../custom-bootstrap.scss';
 .button{
-    width: 40%;
+    width: 30%;
     padding: 20px;
     color: $white;
     background-color: $paideia-purple;
