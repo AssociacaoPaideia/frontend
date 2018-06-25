@@ -23,43 +23,43 @@
             é possibilitar o acesso gratuito a um curso pré-vestibular de qualidade dando aos jovens 
             que não podem arcar com os custos de um cursinho particular a possibilidade de prosseguirem 
             seus estudos em nível superior.</p>
-        <h2 class="title center">Nossos Serviços</h2>
+        <h2 class="about-title center">Nossos Serviços</h2>
         <b-row class="compress">
             <b-col>
-            <h6 class="title center">Preparatório ENEM</h6><p>Além da preparação para o vestibular os 
+            <h6 class="about-title center">Preparatório ENEM</h6><p>Além da preparação para o vestibular os 
             nossos alunos contam ainda com um preparatório para o ENEM com aulas, 
             material e testes específicos para este processo seletivo.</p>
             </b-col>
             <b-col>
-            <h6 class="title center">Aulas Complementares Específicas</h6><p>Nestas aulas os alunos recebem 
+            <h6 class="about-title center">Aulas Complementares Específicas</h6><p>Nestas aulas os alunos recebem 
             orientação específica sobre cada conteúdo ministrado além de participarem da resolução 
             de listas de exercícios.</p>    
             </b-col>
             <b-col>
-            <h6 class="title center">Material Didático</h6><p>Ético Sistema de Ensino, da Editora Saraiva 
+            <h6 class="about-title center">Material Didático</h6><p>Ético Sistema de Ensino, da Editora Saraiva 
             tem o conteúdo exigido pelos principais vestibulares do Brasil e tudo isso atualizado, 
             colorido e conforme o novo acordo ortográfico.</p>    
             </b-col>
             <b-col>
-            <h6 class="title center">Simulados</h6><p>Com questões dos principais vestibulares para que os 
+            <h6 class="about-title center">Simulados</h6><p>Com questões dos principais vestibulares para que os 
             alunos possam avaliar seu aproveitamento.</p>    
             </b-col>
         </b-row>
         <b-row class="compress">
             <b-col>
-                <h6 class="title center">Oficinas de Redação</h6><p>Necessárias para o aprimoramento 
+                <h6 class="about-title center">Oficinas de Redação</h6><p>Necessárias para o aprimoramento 
                 tanto nos vestibulares como para o ENEM.</p>
             </b-col>
             <b-col>
-                <h6 class="title center">Acompanhamento Psicológico</h6><p>Atendimento especializado visando 
+                <h6 class="about-title center">Acompanhamento Psicológico</h6><p>Atendimento especializado visando 
                 ajudar na escolha profissional.</p>
             </b-col>
             <b-col>
-                <h6 class="title center">Roteiros Culturais</h6><p>Visitas a Centros Culturais, Teatros, 
+                <h6 class="about-title center">Roteiros Culturais</h6><p>Visitas a Centros Culturais, Teatros, 
                 Museus, Universidades entre outros.</p>
             </b-col>
             <b-col>
-                <h6 class="title center">Cursinho Online</h6><p>Plantão de dúvidas virtual (em implantação).</p>
+                <h6 class="about-title center">Cursinho Online</h6><p>Plantão de dúvidas virtual (em implantação).</p>
             </b-col>
         </b-row>
     </b-container>
@@ -87,10 +87,10 @@ h1:first-of-type{
 h2.center{
     margin-bottom: 20px;
 }
-h2.center.title{
+h2.center.about-title{
     padding-top: 25px;
 }
-.title{
+.about-title{
     border-top: 3px solid $paideia-green;
     padding-top: 15px;
     color: $paideia-purple;

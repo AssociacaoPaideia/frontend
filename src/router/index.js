@@ -16,6 +16,9 @@ import GForms from '@/components/GForms';
 import AboutPaideia from '@/components/AboutPaideia';
 import News from '@/components/News';
 import UseTerm from '@/components/UseTerm';
+import Admin from '@/components/Admin';
+import MoreDepoiments from '@/components/MoreDepoiments';
+import Contact from '@/components/Contact';
 import store from "../vuex/store"
 
 Vue.component('Footer', Footer);
@@ -74,6 +77,14 @@ export default new Router({
       name: 'News',
       component: News,
     },{
+      path: '/depoimentos',
+      name: 'MoreDepoiments',
+      component: MoreDepoiments,
+    },/*{
+      path: '/contato',
+      name: 'Contact',
+      component: Contact,
+    },*/{
       path: '*',
       name: 'NotFound',
       component: NotFound,
