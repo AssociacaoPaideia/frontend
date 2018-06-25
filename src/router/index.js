@@ -80,11 +80,11 @@ export default new Router({
       path: '/depoimentos',
       name: 'MoreDepoiments',
       component: MoreDepoiments,
-    },/*{
+    },{
       path: '/contato',
       name: 'Contact',
       component: Contact,
-    },*/{
+    },{
       path: '*',
       name: 'NotFound',
       component: NotFound,

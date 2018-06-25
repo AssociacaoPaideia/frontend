@@ -53,7 +53,7 @@ prerrogativa e a autonomia de agir visando ao bem comum e à ética.</li>
                 Li e aceito os termos de responsabilidade.
             </b-form-checkbox>
             <br><br>
-            <b-button :disabled="!checkBox" type="submit" class="button">
+            <b-button :disabled="!checkBox" type="submit" class="user-button">
                 Enviar
             </b-button>
         </form>
@@ -109,7 +109,7 @@ ol li:before {
 .terms:hover{
     cursor: pointer;
 }
-.button{
+.user-button{
     padding: 10px 40px;
     display: block;
     margin: auto;
