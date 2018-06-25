@@ -10,9 +10,11 @@
                 v-model='slide'
                 @sliding-start='onSlideStart'
                 @sliding-end='onSlideEnd'>
-      <b-carousel-slide align-v='center' img-src="../assets/slide-preparatorio-enem.jpg">
+      <b-carousel-slide align-v='center' img-src="../assets/image_01.png">
       </b-carousel-slide>
-      <b-carousel-slide align-v='center' img-src="../assets/slide-cursinho-focus.jpg">
+      <b-carousel-slide align-v='center' img-src="../assets/image_02.png">
+      </b-carousel-slide>
+      <b-carousel-slide align-v='center' img-src="../assets/image_03.png">
       </b-carousel-slide>
   </b-carousel>
 </b-row>
