@@ -14,10 +14,12 @@
           </b-col>               
           <b-col v-if="isEditalAvailable" cols="12" md="4">
               <center>
+              <a :href="editalUrl" target="_blank">
                 <figure>
                   <img src="../assets/edital.svg" blank rounded blank-color="#fff"  width="100" height="100"/><br/>
                   <figcaption class='btn'>EDITAL/MANUAL</figcaption>
                 </figure>
+                </a>
               </center>
           </b-col>
           <b-col v-if="isSubscriptionAvailable" cols="12" md="4">
@@ -53,6 +55,7 @@ export default {
     data() {
         return {
             requerimentoUrl: "/static/REQUERIMENTO - 2018.pdf",
+            editalUrl: "/static/edital_2sem.pdf",
             inscricaoUrl: this.isAuthenticated ? "#/subscribe/basic" : "#/signup",
             canDisplayEdital: false,
         }
