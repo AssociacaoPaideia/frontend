@@ -12,7 +12,7 @@
                   </figure>
               </center>
           </b-col>               
-          <b-col cols="12" md="4">
+          <b-col v-if="isEditalAvailable" cols="12" md="4">
               <center>
                 <figure>
                   <img src="../assets/edital.svg" blank rounded blank-color="#fff"  width="100" height="100"/><br/>
@@ -44,14 +44,17 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { truncate } from 'fs';
-export default {  
+import ntpClient  from 'ntp-client';
+
+export default {
     computed: {
-        ...mapGetters(['isAuthenticated', 'isSubscriptionAvailable']),
+        ...mapGetters(['isAuthenticated', 'isSubscriptionAvailable', 'isEditalAvailable']),
     },
     data() {
         return {
             requerimentoUrl: "/static/REQUERIMENTO - 2018.pdf",
-            inscricaoUrl: this.isAuthenticated ? "#/subscribe/basic" : "#/signup"
+            inscricaoUrl: this.isAuthenticated ? "#/subscribe/basic" : "#/signup",
+            canDisplayEdital: false,
         }
     }
 }

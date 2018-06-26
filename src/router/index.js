@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import NtpClient from "ntp-client";
 import Login from '@/components/Login';
 import Subscribe from '@/components/Subscribe';
 import WizardProcess from '@/components/WizardProcess';

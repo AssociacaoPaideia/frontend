@@ -234,6 +234,29 @@ const actions = {
           "Nâo foi possível validar seu dados.");
       }
     });
+  },
+  isEditalAvailable({commit, state, rootState}){
+    return rootState.apollo.watchQuery({
+        query: gql`{isEditalAvailable}`,
+        variables: {}
+    }).subscribe({
+      next(result){
+        debugger;
+        if(!result.data){
+          return;
+        }
+
+        if(result.data.isEditalAvailable){
+          commit(mutation.isEditalAvailableSuccess, result.data.isEditalAvailable);
+          actions.getLoggedUser({ commit, state, rootState });
+        }
+      },
+      error(err){
+        debugger;
+        commit(mutation.isEditalAvailableError, 
+          "Nâo foi possível validar seu dados.");
+      }
+    });
   }
 };
 

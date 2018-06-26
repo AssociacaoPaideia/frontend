@@ -31,6 +31,9 @@ const getters = {
   },
   isSubscriptionAvailable(state){
     return state.isSubscriptionAvailable;
+  },
+  isEditalAvailable(state){
+    return state.isEditalAvailable;
   }
 };
 

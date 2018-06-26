@@ -26,9 +26,11 @@ export default {
       this.setToken(localToken)
       this.getLoggedUser();
     }
+    this.isEditalAvailable();
+    this.isSubscriptionAvailable();
   },
   methods: {
-    ...mapActions(['setToken', 'getLoggedUser']),
+    ...mapActions(['setToken', 'getLoggedUser','isEditalAvailable','isSubscriptionAvailable']),
   },
 };
 </script>

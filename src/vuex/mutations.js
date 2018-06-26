@@ -40,6 +40,12 @@ const mutations = {
   },
   [mutation.isSubscriptionAvailableError](state, value){
     state.isSubscriptionAvailable = false
+  }, 
+  [mutation.isEditalAvailableSuccess](state, value){
+    state.isEditalAvailable = value
+  },
+  [mutation.isEditalAvailableError](state, value){
+    state.isEditalAvailable = false
   }
 };
 
