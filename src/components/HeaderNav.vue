@@ -1,5 +1,6 @@
 <template>
     <b-container>
+      <a href="#/">
       <b-row align-v="center">
         <b-col>
             <b-img left fluid-grow src='../assets/logo-focus-grande.png'/>
@@ -9,7 +10,8 @@
             <b-img align-v='center' src='../assets/logo-paideia-grande.png'/>
           </center>
         </b-col>
-      </b-row> 
+      </b-row>
+      </a>
       <b-row>
         <b-navbar toggleable="md" type="dark" sticky variant="primary">
           <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
