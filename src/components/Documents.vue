@@ -6,10 +6,12 @@
       <b-row align-h="center" class='buttons'>
           <b-col cols="12" md="4">
               <center>
+                  <a :href="editalUrl" target="_blank">
                   <figure>
                     <img src="../assets/instrucoes.svg" rounded blank blank-color="#fff"  width="100" height="100"/><br/>
-                    <figcaption class='btn'>INSTRUÇÕES</figcaption>
+                    <figcaption class='btn'>INFORMAÇÕES BÁSICAS</figcaption>
                   </figure>
+                   </a>
               </center>
           </b-col>               
           <b-col v-if="isEditalAvailable" cols="12" md="4">
@@ -56,6 +58,7 @@ export default {
         return {
             requerimentoUrl: "/static/REQUERIMENTO - 2018.pdf",
             editalUrl: "/static/edital_2sem.pdf",
+            instrucoesUrl: "/static/informacoes.pdf",
             inscricaoUrl: this.isAuthenticated ? "#/subscribe/basic" : "#/signup",
             canDisplayEdital: false,
         }
