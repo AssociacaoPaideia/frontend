@@ -6,7 +6,7 @@
       <b-row align-h="center" class='buttons'>
           <b-col cols="12" md="4">
               <center>
-                  <a :href="editalUrl" target="_blank">
+                  <a :href="instrucoesUrl" target="_blank">
                   <figure>
                     <img src="../assets/instrucoes.svg" rounded blank blank-color="#fff"  width="100" height="100"/><br/>
                     <figcaption class='btn'>INFORMAÇÕES BÁSICAS</figcaption>
