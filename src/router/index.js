@@ -19,6 +19,7 @@ import News from '@/components/News';
 import UseTerm from '@/components/UseTerm';
 import Admin from '@/components/Admin';
 import MoreDepoiments from '@/components/MoreDepoiments';
+import FilesUpload from '@/components/FilesUpload';
 import Contact from '@/components/Contact';
 import store from "../vuex/store"
 
@@ -27,11 +28,10 @@ Vue.component('HeaderNav', HeaderNav);
 Vue.use(Router);
 
 const checkCanSubscribe = (to, from, next) => {
-    if(store.getters.isAuthenticated(store.state) && (store.getters.authenticatedUser(store.state) && !store.getters.authenticatedUser(store.state).isSubscribed)) {
-      debugger
+    //if(store.getters.isAuthenticated(store.state) && (store.getters.authenticatedUser(store.state) && !store.getters.authenticatedUser(store.state).isSubscribed)) {
       next();
       return
-    }
+    //}
     next('/');
 }
 
@@ -40,7 +40,7 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
-      component: Index,
+      component: FilesUpload,
     }, {
       path: '/signup',
       name: 'Inscrição',
@@ -52,9 +52,21 @@ export default new Router({
       beforeEnter: checkCanSubscribe,
       children: [
         {
+          path: 'terms',
+          name: 'UseTerm',
+          component: UseTerm,
+          beforeEnter: checkCanSubscribe,
+        },
+        {
           path: 'basic',
           name: 'BasicInfo',
           component: BasicInfo,
+          beforeEnter: checkCanSubscribe,
+        },
+        {
+          path: 'docs',
+          name: 'FilesUpload',
+          component: FilesUpload,
           beforeEnter: checkCanSubscribe,
         },
         {

@@ -20,8 +20,10 @@ export default {
   },
   computed: {
     steps() {
-      return [{ name: 'Dados Basicos', href: '/login', done: (this.$route.name !== 'BasicInfo'), active: (this.$route.name === 'BasicInfo') },
-              { name: 'Dados Adicionais & Socioeconômico', href: '/login', done: (this.$route.name === 'SocialEco'), active: (this.$route.name === 'AdditionalInfo') }];
+      return [{ name: 'Termos de Responsabilidade', href: '/login', done: (this.$route.name === 'BasicInfo'), active: (this.$route.name === 'UseTerm') },
+              { name: 'Dados Basicos', href: '/login', done: (this.$route.name === 'FilesUpload'), active: (this.$route.name === 'BasicInfo') },
+              { name: 'Arquivos', href: '/docs', done: (this.$route.name === 'AdditionalInfo'), active: (this.$route.name === 'FilesUpload') },
+              { name: 'Dados Adicionais', href: '/login', done: (this.$route.name === 'AdditionalInfo'), active: (this.$route.name === 'AdditionalInfo') }];
     },
   },
   methods: {
