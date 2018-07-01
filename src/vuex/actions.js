@@ -8,7 +8,7 @@ const actions = {
   },
   getLoggedUser({commit, state, rootState}){
     return rootState.apollo.watchQuery({
-      query: gql`query authenticatedUser { authenticatedUser{ id firstName lastName email isSubscribed} }`
+      query: gql`query authenticatedUser { authenticatedUser{ id firstName lastName email isSubscribed isAdmin} }`
     }).subscribe({
       next(result){
         if(result.data.authenticatedUser){
@@ -204,7 +204,6 @@ const actions = {
         variables: {}
     }).subscribe({
       next(result){
-        debugger
         if(!result.data){
           return;
         }
@@ -214,7 +213,6 @@ const actions = {
         }
       },
       error(err){
-        debugger
         commit(mutation.isSubscriptionAvailableError, 
           "Nâo foi possível validar seu dados.");
       }

@@ -68,6 +68,7 @@ export default new Router({
           name: 'FilesUpload',
           component: FilesUpload,
           beforeEnter: checkCanSubscribe,
+          props: true
         },
         {
           path: 'social',

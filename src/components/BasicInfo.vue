@@ -79,7 +79,7 @@ export default {
    watch: {
      subscribeSuccess :  function (val) {
       if(val){
-        this.$router.push({ name: 'FilesUpload', params: {isMinor:   this.getAge(this.form.birthDate)}})
+        this.$router.push({ name: 'FilesUpload', params: {isMinor:  this.getAge(this.form.birthDate) < 18}})
       }
      }
    },
@@ -87,9 +87,10 @@ export default {
     ...mapActions(['addSubscriber']),
     getAge: function (birthDate) {
         var today = new Date();
-        var age = today.getFullYear() - birthDate.getFullYear();
-        var m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        var date = new Date(birthDate);
+        var age = today.getFullYear() - date.getFullYear();
+        var m = today.getMonth() - date.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < date.getDate())) {
             age--;
         }
         return age;

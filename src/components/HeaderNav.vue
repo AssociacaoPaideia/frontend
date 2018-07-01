@@ -26,8 +26,8 @@
               <b-nav-item href="#/about">Sobre</b-nav-item>
               <b-nav-item href="#/news">Notícias</b-nav-item>
               <b-nav-item href="#/contato">Contato</b-nav-item>
-              <b-nav-item href="#/signup" @click="registerClicked" v-if="!isAuthenticated && isSubscriptionAvailable" >Registrar-se</b-nav-item>
-              <b-nav-item href="#/subscribe/terms" v-if="isAuthenticated && authenticatedUser && !authenticatedUser.isSubscribed && isSubscriptionAvailable" >Inscrição Cursinho 2018</b-nav-item>
+              <b-nav-item href="#/signup" @click="registerClicked" v-if="(isAuthenticated && authenticatedUser && authenticatedUser.isAdmin) || (!isAuthenticated && isSubscriptionAvailable)" >Registrar-se</b-nav-item>
+              <b-nav-item href="#/subscribe/terms" v-if="(isAuthenticated && authenticatedUser && authenticatedUser.isAdmin) || (isAuthenticated && authenticatedUser && !authenticatedUser.isSubscribed && isSubscriptionAvailable)" >Inscrição Cursinho 2018</b-nav-item>
               <b-nav-item href="#" disabled v-if="authenticatedUser && authenticatedUser.isSubscribed && isSubscriptionAvailable" >Inscrição Cursinho 2018 realizada</b-nav-item>
               <b-nav-item href="#/admin">Admin</b-nav-item>
             </b-navbar-nav>

@@ -8,13 +8,17 @@
                 <b-form-file required :name="file.type" @change="uploadFile(file, $event.target.files)" accept="image/*" 
                             placeholder="Escolha uma foto..." :disabled="file.isSending || file.sent" plain class="file-input"></b-form-file>
                 <b-progress v-if="file.isSending" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
-                <b-form-text v-if="!file.sent" id="inputLiveHelp">
+                <b-form-text v-if="!file.sent && !file.errored" id="inputLiveHelp">
                     <!-- this is a form text block (formerly known as help block) -->
                     É necessário que o arquivo seja uma imagem.
                 </b-form-text>
-                 <b-form-text v-else id="inputLiveHelp">
+                 <b-form-text v-if="file.sent" id="inputLiveHel">
                     <!-- this is a form text block (formerly known as help block) -->
                    Upload completo ✅
+                </b-form-text>
+                <b-form-text v-if="file.errored" id="inputLiveHelp">
+                    <!-- this is a form text block (formerly known as help block) -->
+                   Erro ao enviar arquivo, faça o envio novamente. ❌
                 </b-form-text>
             </b-form-group>
         <b-button class='text-white'  type="submit" :disabled="!isAllFilesSent" variant='primary'>Próximo Passo</b-button>
@@ -27,10 +31,11 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 export default {
+    props:['isMinor'],
     computed: {
-        ...mapGetters(['subscribeActivationSuccess']),
+        ...mapGetters(['subscribeSuccess']),
         isAllFilesSent: function () {
-            return this.items.findIndex(file => file.sent === false ) === -1
+            return this.items.findIndex(file => (file.justMinor == this.isMinor) && file.sent === false ) === -1
         }
     },
     data() {
@@ -40,79 +45,118 @@ export default {
                     type: "RG",
                     displayName: "RG",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: true,
+                    justMinor: false
                 },
                 {
                     type: "CPF",
                     displayName: "CPF",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: true,
+                    justMinor: false
                 },
                 {
                     type: "PARENT_RG",
-                    displayName: "RG do Responsável",
+                    displayName: "RG do Responsável (Caso menor)",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: true,
+                    justMinor: true
                 },
                 {
                     type: "PARENT_CPF",
-                    displayName: "CPF do Responsável",
+                    displayName: "CPF do Responsável (Caso menor)",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: true,
+                    justMinor: true
                 },
                 {
                     type:  "TERM_RESP", 
-                    displayName: "Termo de Responsabilidade",
+                    displayName: "Termo de Responsabilidade (Caso menor)",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: true,
+                    justMinor: true
                 },
                 {
                     type: "HISTORY",
                     displayName: "Histórico Escolar",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: true,
+                    justMinor: false
                 },
                 {
                     type: "SCHOLARSHIP",
-                    displayName: "Comprovante de Bolsa",
+                    displayName: "Comprovante de Bolsa (Caso bolsista)",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: false,
+                    justMinor: false
                 }, 
                 {
                     type: "EJA",
                     displayName: "Comprovante Matrícula 3o Período EJA",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: false,
+                    justMinor: false
                 },
                 {
                     type: "MEDICAL",
                     displayName: "Atestado médico",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: false,
+                    justMinor: false
                 },
                 {
                     type: "ADDRESS",
                     displayName: "Comprovante de Endereço",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: true,
+                    justMinor: false
                 },
                 {
                     type: "PHOTO",
                     displayName: "Foto",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: true,
+                    justMinor: false
                 },
                 {
                     type: "CITIZEN CARD",
                     displayName: "Cartão Cidadão",
                     isSending: false,
-                    sent: false 
+                    sent: false ,
+                    errored: false,
+                    required: true,
+                    justMinor: false
                 },
                 {
                     type: "HIGHSCHOOL",
                     displayName: "Comprovante de Matrícula ou Conclusão do ensino médio",
                     isSending: false,
-                    sent: false
+                    sent: false,
+                    errored: false,
+                    required: true,
+                    justMinor: false
                 }
             ],
         }
@@ -120,10 +164,7 @@ export default {
     methods: {
     ...mapActions(['addFiles']),
     clicked: function() {
-      
-      this.form.userId = this.authenticatedUser.id;
-      this.addSubscriber(this.form);
-      this.sent = true;
+        this.$router.push({ name: 'SocialEco'})
     },
     loadPhoto: function (e) {
       return new Promise((resolve, reseject) => {
@@ -141,6 +182,7 @@ export default {
       });
     },
     uploadFile: function (file, e){
+        debugger
       file.isSending = true
       this.loadPhoto(e).then(img => {
         var fileToSend = {
@@ -151,16 +193,21 @@ export default {
         debugger
         this.addFiles(fileToSend).then((result) => {
                 // Result
+                debugger
                file.isSending = false
                file.sent = result.data.addFiles
+               file.errored = !result.data.addFiles
             }).catch((error) => {
+                debugger
                 file.isSending = false
                 file.sent = false
+                file.errored = true
             })
         
       }).catch((reason) => {
         file.isSending = false
         file.sent = false
+        file.errored = true
       });
     },
   },
