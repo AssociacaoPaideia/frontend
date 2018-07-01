@@ -2,8 +2,9 @@
     <b-container>
         <main class="container">
             <h1 class="title">Contato</h1>
-            <b-row>
-                <b-col cols="6">
+            <h3 class="contact-text">Para entrar em contato, envie um email para:<br>contato@assossiacaopaideia.org.br</h3>
+            <b-row v-if="false">
+                <b-col>
                     <p class="form-header">Entre em contato conosco preenchendo o formulário abaixo. Responderemos o mais breve possível.</p>
                     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
                     <b-form-group id="group1"
@@ -61,11 +62,13 @@
                     </b-form-group>
                     <b-button type="submit" class="button">Enviar</b-button>
                     </b-form>
-                </b-col>
+                </b-col >
+                
+                <b-col class="map">
                     <p>Rua Orlando Pasti, 239 - Vila Pasti - Louveira - SP<br>(19) 9.9714.7267</p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.2979462359435!2d-46.946060584954054!3d-23.0861865501011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf2e7dc98ec7bd%3A0xa9680ffc50a356f7!2sEMEF+Vila+Pasti!5e0!3m2!1spt-BR!2sbr!4v1464791401173" width="45%" height="610" frameborder="0" style="border:0" class="map"></iframe>
-                <b-col>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.2979462359435!2d-46.946060584954054!3d-23.0861865501011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf2e7dc98ec7bd%3A0xa9680ffc50a356f7!2sEMEF+Vila+Pasti!5e0!3m2!1spt-BR!2sbr!4v1464791401173" width="100%" height="610" frameborder="0" style="border:0"></iframe>
                 </b-col>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.2979462359435!2d-46.946060584954054!3d-23.0861865501011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf2e7dc98ec7bd%3A0xa9680ffc50a356f7!2sEMEF+Vila+Pasti!5e0!3m2!1spt-BR!2sbr!4v1464791401173" width="100%" height="610" frameborder="0" style="border:0" class="frame"></iframe>
             </b-row>
         </main>
     </b-container>
@@ -118,7 +121,21 @@ export default {
 .form-header{
     text-align: justify;
 }
-.map{
-    float: right;
+.frame{
+  display: none;
 }
+.contact-text{
+  font-size: 1.04em;
+  text-align: center;
+}
+@media (max-width: 500px){
+  .map{
+    display: none;
+  }
+  .frame{
+    margin-top: 30px;
+    display: block;
+  }
+}
+
 </style>
