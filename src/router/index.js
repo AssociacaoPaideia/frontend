@@ -21,6 +21,8 @@ import Admin from '@/components/Admin';
 import MoreDepoiments from '@/components/MoreDepoiments';
 import FilesUpload from '@/components/FilesUpload';
 import Contact from '@/components/Contact';
+import PasswordEmail from "@/components/PasswordEmail";
+import NewPassword from "@/components/NewPassword";
 import store from "../vuex/store"
 
 Vue.component('Footer', Footer);
@@ -40,7 +42,7 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
-      component: FilesUpload,
+      component: Index,
     }, {
       path: '/signup',
       name: 'Inscrição',
@@ -102,6 +104,14 @@ export default new Router({
       path: '/admin',
       name: 'Admin',
       component: Admin,
+    },{
+      path: '/email',
+      name: 'PasswordEmail',
+      component: PasswordEmail,
+    },{
+      path: '/newpassword',
+      name: 'NewPassword',
+      component: NewPassword,
     },{
       path: '*',
       name: 'NotFound',

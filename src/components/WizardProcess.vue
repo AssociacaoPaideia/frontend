@@ -1,6 +1,6 @@
 <template>
      <b-row class="mb-2">
-       <hr/>
+       
       <b-col class='stepBox' v-for="(step, index) in steps" :key="step.name">
         <div @click='click(step)' class='step' style='height:60px;width:60px' v-bind:class="[{ done : step.done },{ active : step.active } ]">
           <p>Passo {{(index+1)}}</p>
@@ -32,6 +32,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../custom-bootstrap.scss";
+  .stepBox{
+    margin-top: 15px;
+  }
   .step{
     border: solid 2px $paideia-purple;
     background-color: $white;
@@ -39,7 +42,7 @@ export default {
     border-radius: 50%;
     text-align: center;
     position: relative;
-    margin: auto;
+    margin: 0 auto;
     font-size: 10px;
     p{
       line-height: 60px;
@@ -60,23 +63,10 @@ export default {
     color:$paideia-purple;
     font-weight: bold;
     text-align: center;
-    white-space: nowrap;
     margin: 0px;
     &.done{
         color: $paideia-dark-green;
     }
   }
-
-hr{
-  height: 2px;
-  border: 0px;
-  width: 100%;
-  position: absolute;
-  margin-top: 0px;
-  top: 30px;
-  background-color: #ffffff; // Old browsers
-  @include filter-gradient(#ffffff, #ffffff, horizontal); // IE6-9
-  @include background-image(linear-gradient(left, #ffffff 0%,#527a25 50%,#ffffff 100%));
-}
 </style>
 
