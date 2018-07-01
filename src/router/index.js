@@ -98,6 +98,10 @@ export default new Router({
       name: 'Contact',
       component: Contact,
     },{
+      path: '/admin',
+      name: 'Admin',
+      component: Admin,
+    },{
       path: '*',
       name: 'NotFound',
       component: NotFound,
