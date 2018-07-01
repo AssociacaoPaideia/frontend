@@ -4,9 +4,9 @@
      <b-col cols='12' offset="0" sm='10'  offset-sm='1' md='8' offset-md="2"  lg='6' offset-lg="3"  align-v="center">        
       <b-form class="text-white font-weight-bold login-form" @submit.prevent="clicked" @reset="clicked">
             <b-form-group v-for="(file) in this.items" :key="file.type" :id="file.type" :label="file.displayName"
-                label-for="Foto" >
+                label-for="Foto">
                 <b-form-file required :name="file.type" @change="uploadFile(file, $event.target.files)" accept="image/*" 
-                            placeholder="Escolha uma foto..." :disabled="file.isSending || file.sent"></b-form-file>
+                            placeholder="Escolha uma foto..." :disabled="file.isSending || file.sent" plain class="file-input"></b-form-file>
                 <b-progress v-if="file.isSending" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
                 <b-form-text v-if="!file.sent" id="inputLiveHelp">
                     <!-- this is a form text block (formerly known as help block) -->
@@ -14,7 +14,7 @@
                 </b-form-text>
                  <b-form-text v-else id="inputLiveHelp">
                     <!-- this is a form text block (formerly known as help block) -->
-                   Arquivo Enviado com sucesso ✅
+                   Upload completo ✅
                 </b-form-text>
             </b-form-group>
         <b-button class='text-white'  type="submit" :disabled="!isAllFilesSent" variant='primary'>Próximo Passo</b-button>
@@ -181,9 +181,18 @@ export default {
       width: 100%
   }
 }
-
-.arquivo:lang(en)~.custom-file-label::after {
-    content: "Escolher";
+.file-input:first-of-type{
+    border-radius: 5px 0 5px 0;
 }
+.file-input{
+    border-radius: 10px;
+    padding: 10px;
+    background: #f1d7e9;  
+    color: black;
+    -webkit-box-shadow: 1px 1px 12px 1px #cde2ec;
+       -moz-box-shadow: 1px 1px 12px 1px #cde2ec;
+            box-shadow: 1px 1px 12px 1px #cde2ec;
+}
+
 
 </style>
