@@ -40,7 +40,7 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
-      component: FilesUpload,
+      component: Index,
     }, {
       path: '/signup',
       name: 'Inscrição',
