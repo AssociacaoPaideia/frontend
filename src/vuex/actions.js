@@ -77,7 +77,6 @@ const actions = {
         let token = result.data.authenticate.token || [];
         commit(mutation.updateToken, token)
         localStorage.setItem('token', token)
-        actions.getLoggedUser({ commit, state, rootState })
       },
       error(error){
         // eslint-disable-next-line
@@ -95,18 +94,14 @@ const actions = {
       mutation: gql`mutation addSubscriber($birthDate: String!
         $birthPlace: String!
         $phone: String!
-        $citizenCard: String!
         $cpf: String!
         $rg: String!
-        $photo: String!
         $userId: Int!) {
         addSubscriber(birthDate: $birthDate
           birthPlace: $birthPlace
           phone: $phone
-          citizenCard: $citizenCard
           cpf: $cpf
           rg: $rg
-          photo: $photo
           userId: $userId){
             id
         }
@@ -116,10 +111,8 @@ const actions = {
         birthDate: subscriber.birthDate,
         birthPlace: subscriber.birthPlace,
         phone: subscriber.phone,
-        citizenCard: subscriber.citizenCard,
         cpf: subscriber.cpf,
         rg: subscriber.rg,
-        photo: subscriber.photo,
         userId: subscriber.userId,
       },
     }).then((result) => {
@@ -211,16 +204,17 @@ const actions = {
         variables: {}
     }).subscribe({
       next(result){
+        debugger
         if(!result.data){
           return;
         }
-
         if(result.data.isSubscriptionAvailable){
           commit(mutation.isSubscriptionAvailableSuccess, result.data.isSubscriptionAvailable);
           actions.getLoggedUser({ commit, state, rootState });
         }
       },
       error(err){
+        debugger
         commit(mutation.isSubscriptionAvailableError, 
           "Nâo foi possível validar seu dados.");
       }
@@ -257,7 +251,7 @@ const actions = {
         file: file.file,
         subscriberId: file.subscriberId
       }
-    }).subscribe();
+    });
   },
 };
 

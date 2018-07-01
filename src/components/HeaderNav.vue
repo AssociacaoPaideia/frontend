@@ -27,7 +27,7 @@
               <b-nav-item href="#/news">Notícias</b-nav-item>
               <b-nav-item href="#/contato">Contato</b-nav-item>
               <b-nav-item href="#/signup" @click="registerClicked" v-if="!isAuthenticated && isSubscriptionAvailable" >Registrar-se</b-nav-item>
-              <b-nav-item href="#/subscribe/terms"  >Inscrição Cursinho 2018</b-nav-item>
+              <b-nav-item href="#/subscribe/terms" v-if="isAuthenticated && authenticatedUser && !authenticatedUser.isSubscribed && isSubscriptionAvailable" >Inscrição Cursinho 2018</b-nav-item>
               <b-nav-item href="#" disabled v-if="authenticatedUser && authenticatedUser.isSubscribed && isSubscriptionAvailable" >Inscrição Cursinho 2018 realizada</b-nav-item>
               
             </b-navbar-nav>
@@ -55,10 +55,18 @@ export default {
   name: 'HeaderNav',
   components: { Login },
   computed: {
-    ...mapGetters(['isAuthenticated', 'authenticatedUser','registrationSuccess', 'isSubscriptionAvailable']),
+    ...mapGetters(['isAuthenticated', 'authenticatedUser','registrationSuccess', 'isSubscriptionAvailable', 'token']),
     ...mapActions(['resetRegistration']),
   },
   methods: {
+    watch: {
+      token: function (oldVal, newVal) {
+        debugger
+        if(!oldVal && newVal){
+          actions.getLoggedUser({ commit, state, rootState })
+        }
+      }
+    }, 
     registerClicked() {
       debugger;
       if(this.registrationSuccess){        

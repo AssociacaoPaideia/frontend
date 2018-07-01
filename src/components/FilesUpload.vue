@@ -3,11 +3,10 @@
     <b-row align-v="center">
      <b-col cols='12' offset="0" sm='10'  offset-sm='1' md='8' offset-md="2"  lg='6' offset-lg="3"  align-v="center">        
       <b-form class="text-white font-weight-bold login-form" @submit.prevent="clicked" @reset="clicked">
-        <b-row align-h="center">
             <b-form-group v-for="(file) in this.items" :key="file.type" :id="file.type" :label="file.displayName"
                 label-for="Foto" >
                 <b-form-file required :name="file.type" @change="uploadFile(file, $event.target.files)" accept="image/*" 
-                            placeholder="Escolha uma foto..." v-if="!file.sent" :disabled="file.isSending || file.sent"></b-form-file>
+                            placeholder="Escolha uma foto..." :disabled="file.isSending || file.sent"></b-form-file>
                 <b-progress v-if="file.isSending" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
                 <b-form-text v-if="!file.sent" id="inputLiveHelp">
                     <!-- this is a form text block (formerly known as help block) -->
@@ -18,7 +17,6 @@
                    Arquivo Enviado com sucesso ✅
                 </b-form-text>
             </b-form-group>
-        </b-row>
         <b-button class='text-white'  type="submit" :disabled="!isAllFilesSent" variant='primary'>Próximo Passo</b-button>
       </b-form>
      </b-col>
@@ -30,6 +28,7 @@
 import { mapGetters, mapActions } from 'vuex';
 export default {
     computed: {
+        ...mapGetters(['subscribeActivationSuccess']),
         isAllFilesSent: function () {
             return this.items.findIndex(file => file.sent === false ) === -1
         }
@@ -147,16 +146,18 @@ export default {
         var fileToSend = {
             type: file.type,
             file: img,
-            subscriberId: 1
+            subscriberId: this.subscribeSuccess.id
         }
-        this.addFiles(fileToSend).subscribe(({data}) => {
-            file.isSending = false
-            file.sent = data.addFiles
-        }, (error) => {
-            console.log(error)
-            file.isSending = false
-            file.sent = false
-        })
+        debugger
+        this.addFiles(fileToSend).then((result) => {
+                // Result
+               file.isSending = false
+               file.sent = result.data.addFiles
+            }).catch((error) => {
+                file.isSending = false
+                file.sent = false
+            })
+        
       }).catch((reason) => {
         file.isSending = false
         file.sent = false
@@ -181,7 +182,7 @@ export default {
   }
 }
 
-.arquivo:lang(pt)~.custom-file-label::after {
+.arquivo:lang(en)~.custom-file-label::after {
     content: "Escolher";
 }
 

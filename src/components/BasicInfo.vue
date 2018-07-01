@@ -79,12 +79,21 @@ export default {
    watch: {
      subscribeSuccess :  function (val) {
       if(val){
-        this.$router.push({ name: 'SocialEco'})
+        this.$router.push({ name: 'FilesUpload', params: {isMinor:   this.getAge(this.form.birthDate)}})
       }
      }
    },
   methods: {
     ...mapActions(['addSubscriber']),
+    getAge: function (birthDate) {
+        var today = new Date();
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
+    },
     clicked: function() {
       
       this.form.userId = this.authenticatedUser.id;
