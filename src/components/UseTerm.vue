@@ -48,7 +48,7 @@ projeto de iniciativa social custeado e mantido pela administração pública do
          <li>Os casos omissos deste termo serão submetidos à avaliação do Conselho de Professores e Direção do preparatório que tem a
 prerrogativa e a autonomia de agir visando ao bem comum e à ética.</li>
         </ol>
-        <form>
+        <form @submit.prevent="clicked">
             <b-form-checkbox v-model="checkBox" id="terms" class="terms">
                 Li e aceito os termos de responsabilidade.
             </b-form-checkbox>
@@ -61,6 +61,11 @@ prerrogativa e a autonomia de agir visando ao bem comum e à ética.</li>
 </template>
 <script>
 export default {
+    methods: {
+        clicked: function() {
+            this.$router.push({ name: 'BasicInfo'})
+        },
+    },
    data(){
        return {
        checkBox:false

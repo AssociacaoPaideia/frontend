@@ -17,8 +17,10 @@ export default {
   },
   data() {
     return {
-      stepsExample: [{ name: 'Dados Basicos', href: '/basic', done: false, active: true },
-      { name: 'Dados Adicionais & Socioeconômico', href: '/social', done: false, active: false }],
+      stepsExample: [{ name: 'Termos de Responsabilidade', href: '/term', done: false, active: false },
+      { name: 'Dados Basicos', href: '/basic', done: false, active: false },
+      { name: 'Arquivos', href: '/docs', done: false, active: false },
+      { name: 'Dados Adicionais', href: '/social', done: false, active: false }],
     };
   },
   methods: {

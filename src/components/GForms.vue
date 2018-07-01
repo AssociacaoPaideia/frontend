@@ -11,6 +11,7 @@
             </b-row>
             <b-row v-if="!isSubscribed" align-h="center"> 
                 <b-button class='text-white'  type="submit" variant='primary'>Confirmar Cadastro</b-button>
+                <b-progress v-if="isSending" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
             </b-row>
             <b-row v-if="!isSubscribed" align-h="center">
                 <b-alert dismissible :show="subscribeActivationError !== null"
@@ -34,9 +35,16 @@ export default {
             return this.subscribeActivationSuccess || (this.authenticatedUser && this.authenticatedUser.isSubscribed);
         }
     },
+    data(){
+        return {
+            isSending: false,
+        }
+    },
     methods: {
         ...mapActions(['validateSubscriber']),
         clicked(event) {
+            debugger
+            this.isSending = true;
             if (event) {
                 event.preventDefault()
             }

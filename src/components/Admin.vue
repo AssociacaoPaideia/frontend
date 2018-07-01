@@ -1,6 +1,6 @@
 <template>
     <b-container class="table">
-        <h1 class="title">Olá</h1>
+        <h1 class="title">Olá, [admin-name]</h1>
          <b-table :fields="fields" :items="items">
             <!-- A virtual column -->
         <template slot="foto" slot-scope="data">
@@ -49,5 +49,14 @@ export default {
     width: 90%;
     text-align: center;
     margin: auto; 
+}
+.title{
+    padding-top: 15px;
+    margin: 10px 0 10px 0;
+    color: $paideia-purple;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2.3em;
 }
 </style>

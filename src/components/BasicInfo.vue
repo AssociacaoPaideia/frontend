@@ -31,31 +31,6 @@
             label-for="RG" >
             <the-mask class='form-control' required placeholder="999.999.999-9" v-model="form.rg" :mask="['##.###.###-#','###.###.###-#']" />
         </b-form-group>
-
-        <b-form-group id="fieldCitizenCard" label="Cartão Cidadão (Digitalizado)"
-            label-for="Cartão Cidadão" >
-            <b-form-file required @change="uploadCitizenCard" accept="image/*" :state="invalidCitizardCardFile === null"
-                         aria-describedby="fieldCitizenCardFeedback" placeholder="Escolha o arquivo digitalizado..."></b-form-file>
-            <b-form-invalid-feedback id="fieldCitizenCardFeedback">
-              <!-- This will only be shown if the preceeding input has an invalid state -->
-              {{this.files.citizenCard}}
-            </b-form-invalid-feedback>
-            <b-form-text id="inputLiveHelp">
-            <!-- this is a form text block (formerly known as help block) -->
-            É necessário que o arquivo seja uma imagem.
-          </b-form-text>
-        </b-form-group>
-
-        <b-form-group id="fieldPhoto" label="Foto (Pode ser uma selfie!)"
-            label-for="Foto" >
-          <b-form-file required @change="uploadSelfie" accept="image/*" 
-                      :state="invaliPhotoFile !== '' "
-                      :invalid-feedback="invaliPhotoFile" placeholder="Escolha uma foto..."></b-form-file>
-                      <b-form-text id="inputLiveHelp">
-            <!-- this is a form text block (formerly known as help block) -->
-            É necessário que o arquivo seja uma imagem.
-          </b-form-text>
-        </b-form-group>
         <b-button class='text-white'  type="submit" variant='primary'>Próximo Passo</b-button>
         <b-progress v-if="sent && registrationSuccess === null" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
           <b-alert dismissible :show="sent && registrationSuccess === false"
@@ -86,10 +61,8 @@ export default {
         birthDate: '',
         birthPlace:'',
         phone:'',
-        citizenCard: null, 
         cpf:'',
         rg: '',
-        photo: null,
         userId: ''
       },
     };
@@ -106,12 +79,22 @@ export default {
    watch: {
      subscribeSuccess :  function (val) {
       if(val){
-        this.$router.push({ name: 'SocialEco'})
+        this.$router.push({ name: 'FilesUpload', params: {isMinor:  this.getAge(this.form.birthDate) < 18}})
       }
      }
    },
   methods: {
     ...mapActions(['addSubscriber']),
+    getAge: function (birthDate) {
+        var today = new Date();
+        var date = new Date(birthDate);
+        var age = today.getFullYear() - date.getFullYear();
+        var m = today.getMonth() - date.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < date.getDate())) {
+            age--;
+        }
+        return age;
+    },
     clicked: function() {
       
       this.form.userId = this.authenticatedUser.id;

@@ -8,10 +8,9 @@ const actions = {
   },
   getLoggedUser({commit, state, rootState}){
     return rootState.apollo.watchQuery({
-      query: gql`query authenticatedUser { authenticatedUser{ id firstName lastName email isSubscribed} }`
+      query: gql`query authenticatedUser { authenticatedUser{ id firstName lastName email isSubscribed isAdmin} }`
     }).subscribe({
       next(result){
-        debugger
         if(result.data.authenticatedUser){
           commit(mutation.updateAuthUser, result.data.authenticatedUser);
         } else {
@@ -78,8 +77,6 @@ const actions = {
         let token = result.data.authenticate.token || [];
         commit(mutation.updateToken, token)
         localStorage.setItem('token', token)
-        debugger;
-        actions.getLoggedUser({ commit, state, rootState })
       },
       error(error){
         // eslint-disable-next-line
@@ -92,24 +89,19 @@ const actions = {
     commit(mutation.updateToken, token)
   },
   addSubscriber({ commit, state, rootState}, subscriber){
-    debugger
     return rootState.apollo.mutate({
       // gql query
       mutation: gql`mutation addSubscriber($birthDate: String!
         $birthPlace: String!
         $phone: String!
-        $citizenCard: String!
         $cpf: String!
         $rg: String!
-        $photo: String!
         $userId: Int!) {
         addSubscriber(birthDate: $birthDate
           birthPlace: $birthPlace
           phone: $phone
-          citizenCard: $citizenCard
           cpf: $cpf
           rg: $rg
-          photo: $photo
           userId: $userId){
             id
         }
@@ -119,10 +111,8 @@ const actions = {
         birthDate: subscriber.birthDate,
         birthPlace: subscriber.birthPlace,
         phone: subscriber.phone,
-        citizenCard: subscriber.citizenCard,
         cpf: subscriber.cpf,
         rg: subscriber.rg,
-        photo: subscriber.photo,
         userId: subscriber.userId,
       },
     }).then((result) => {
@@ -155,13 +145,11 @@ const actions = {
         lastName:user.lastName
       },
     }).then((result) => {
-        debugger;
         if(!result.data.addUser){
           commit(mutation.registrationSuccess, false);
         }
         commit(mutation.registrationSuccess, true);
       }).catch( (error) => {
-        debugger
         // eslint-disable-next-line
         console.log('there was an error sending the query', error);
         commit(mutation.registrationSuccess, false);
@@ -192,7 +180,6 @@ const actions = {
         }
     }).subscribe({
       next(result){
-        debugger;
         if(!result.data){
           return;
         }
@@ -206,7 +193,6 @@ const actions = {
         }
       },
       error(err){
-        debugger;
         commit(mutation.subscribeActivationError, 
           "Nâo foi possível validar seu dados.");
       }
@@ -218,18 +204,15 @@ const actions = {
         variables: {}
     }).subscribe({
       next(result){
-        debugger;
         if(!result.data){
           return;
         }
-
         if(result.data.isSubscriptionAvailable){
           commit(mutation.isSubscriptionAvailableSuccess, result.data.isSubscriptionAvailable);
           actions.getLoggedUser({ commit, state, rootState });
         }
       },
       error(err){
-        debugger;
         commit(mutation.isSubscriptionAvailableError, 
           "Nâo foi possível validar seu dados.");
       }
@@ -241,7 +224,6 @@ const actions = {
         variables: {}
     }).subscribe({
       next(result){
-        debugger;
         if(!result.data){
           return;
         }
@@ -252,12 +234,23 @@ const actions = {
         }
       },
       error(err){
-        debugger;
         commit(mutation.isEditalAvailableError, 
           "Nâo foi possível validar seu dados.");
       }
     });
-  }
+  },
+  addFiles({ commit, state, rootState }, file, callback){
+    return rootState.apollo.mutate({
+      mutation: gql`mutation SendFile($type: String!, $file: String!, $subscriberId: Int!){
+        addFiles(type: $type, file: $file, subscriberId: $subscriberId ) 
+      }`,
+      variables: {
+        type: file.type,
+        file: file.file,
+        subscriberId: file.subscriberId
+      }
+    });
+  },
 };
 
 export default actions;

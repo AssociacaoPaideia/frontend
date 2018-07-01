@@ -48,8 +48,6 @@ export default {
   computed:{
     ...mapGetters(['authenticatedUser', 'token', 'loginErrMsg']),
   },
-  watch: {
-  },
   methods: {
     ...mapActions(['signIn']),
     clicked(event) {
