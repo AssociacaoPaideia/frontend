@@ -21,6 +21,8 @@ import Admin from '@/components/Admin';
 import MoreDepoiments from '@/components/MoreDepoiments';
 import FilesUpload from '@/components/FilesUpload';
 import Contact from '@/components/Contact';
+import PasswordEmail from "@/components/PasswordEmail";
+import NewPassword from "@/components/NewPassword";
 import store from "../vuex/store"
 
 Vue.component('Footer', Footer);
@@ -28,7 +30,7 @@ Vue.component('HeaderNav', HeaderNav);
 Vue.use(Router);
 
 const checkCanSubscribe = (to, from, next) => {
-    if(store.getters.isAuthenticated(store.state) && (store.getters.authenticatedUser(store.state) && (!store.getters.authenticatedUser(store.state).isSubscribed || !store.getters.authenticatedUser(store.state).isAdmi))) {
+    if(store.getters.isAuthenticated(store.state) && (store.getters.authenticatedUser(store.state) && (!store.getters.authenticatedUser(store.state).isSubscribed || store.getters.authenticatedUser(store.state).isAdmin))) {
       next();
       return
     }
@@ -102,6 +104,15 @@ export default new Router({
       path: '/admin',
       name: 'Admin',
       component: Admin,
+      beforeEnter: checkCanSubscribe,
+    },{
+      path: '/email',
+      name: 'PasswordEmail',
+      component: PasswordEmail,
+    },{
+      path: '/newpassword',
+      name: 'NewPassword',
+      component: NewPassword,
     },{
       path: '*',
       name: 'NotFound',

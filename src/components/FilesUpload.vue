@@ -3,7 +3,7 @@
     <b-row align-v="center">
      <b-col cols='12' offset="0" sm='10'  offset-sm='1' md='8' offset-md="2"  lg='6' offset-lg="3"  align-v="center">        
       <b-form class="text-white font-weight-bold login-form" @submit.prevent="clicked" @reset="clicked">
-            <b-form-group v-for="(file) in this.items" :key="file.type" :id="file.type" :label="file.displayName"
+            <b-form-group v-for="(file) in this.items" :key="file.type" v-if="isMinor || !file.justMinor" :id="file.type" :label="file.displayName"
                 label-for="Foto">
                 <b-form-file required :name="file.type" @change="uploadFile(file, $event.target.files)" accept="image/*" 
                             placeholder="Escolha uma foto..." :disabled="file.isSending || file.sent" plain class="file-input"></b-form-file>

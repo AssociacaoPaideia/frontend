@@ -34,6 +34,9 @@ const getters = {
   },
   isEditalAvailable(state){
     return state.isEditalAvailable;
+  },
+  subscribers(state){
+    return state.subscribers;
   }
 };
 

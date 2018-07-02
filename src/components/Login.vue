@@ -24,7 +24,7 @@
           </b-alert>
         </b-form>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Esqueceu sua senha?</a>
+        <a class="dropdown-item" href="#/email">Esqueceu sua senha?</a>
 
 </b-container>
 </template>

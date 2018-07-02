@@ -46,6 +46,9 @@ const mutations = {
   },
   [mutation.isEditalAvailableError](state, value){
     state.isEditalAvailable = false
+  },
+  [mutation.subscribers](state, value){
+    state.subscribers = value
   }
 };
 

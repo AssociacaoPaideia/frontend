@@ -29,7 +29,11 @@
               <b-nav-item href="#/signup" @click="registerClicked" v-if="(isAuthenticated && authenticatedUser && authenticatedUser.isAdmin) || (!isAuthenticated && isSubscriptionAvailable)" >Registrar-se</b-nav-item>
               <b-nav-item href="#/subscribe/terms" v-if="(isAuthenticated && authenticatedUser && authenticatedUser.isAdmin) || (isAuthenticated && authenticatedUser && !authenticatedUser.isSubscribed && isSubscriptionAvailable)" >Inscrição Cursinho 2018</b-nav-item>
               <b-nav-item href="#" disabled v-if="authenticatedUser && authenticatedUser.isSubscribed && isSubscriptionAvailable" >Inscrição Cursinho 2018 realizada</b-nav-item>
+<<<<<<< HEAD
               <b-nav-item href="#/admin"  v-if="(isAuthenticated && authenticatedUser && authenticatedUser.isAdmin)">Admin</b-nav-item>
+=======
+              <b-nav-item href="#/admin" v-if="(isAuthenticated && authenticatedUser && authenticatedUser.isAdmin)" >Admin</b-nav-item>
+>>>>>>> FilesUpload
             </b-navbar-nav>
 
             <b-navbar-nav class="ml-auto">

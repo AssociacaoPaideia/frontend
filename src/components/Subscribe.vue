@@ -18,18 +18,30 @@ export default {
   components: {
     WizardProcess,
   },
+  created() {
+      window.onbeforeunload = function(e) {
+        var dialogText = 'Dialog text here';
+        e.returnValue = dialogText;
+        return dialogText;
+      };
+  },
   computed: {
     steps() {
-      return [{ name: 'Termos de Responsabilidade', href: '/login', done: (this.$route.name === 'BasicInfo'), active: (this.$route.name === 'UseTerm') },
-              { name: 'Dados Basicos', href: '/login', done: (this.$route.name === 'FilesUpload'), active: (this.$route.name === 'BasicInfo') },
-              { name: 'Arquivos', href: '/docs', done: (this.$route.name === 'AdditionalInfo'), active: (this.$route.name === 'FilesUpload') },
-              { name: 'Dados Adicionais', href: '/login', done: (this.$route.name === 'AdditionalInfo'), active: (this.$route.name === 'AdditionalInfo') }];
+      return [
+        { name: 'Termos de Responsabilidade', href: '/login', done: (this.$route.name === 'BasicInfo'), active: (this.$route.name === 'UseTerm') },
+        { name: 'Dados Basicos', href: '/login', done: (this.$route.name === 'FilesUpload'), active: (this.$route.name === 'BasicInfo') },
+        { name: 'Arquivos', href: '/docs', done: (this.$route.name === 'AdditionalInfo'), active: (this.$route.name === 'FilesUpload') },
+        { name: 'Dados Adicionais', href: '/login', done: (this.$route.name === 'AdditionalInfo'), active: (this.$route.name === 'AdditionalInfo') }
+      ];
     },
   },
   methods: {
     chooseStep: function chooseStep(step) {
       return step.length;
     },
+    leaving: function() {
+     return "Are you sure you want to navigate away?";
+    }
   },
 };
 </script>
