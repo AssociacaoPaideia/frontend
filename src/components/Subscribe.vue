@@ -18,6 +18,13 @@ export default {
   components: {
     WizardProcess,
   },
+  created() {
+      window.onbeforeunload = function(e) {
+        var dialogText = 'Dialog text here';
+        e.returnValue = dialogText;
+        return dialogText;
+      };
+  },
   computed: {
     steps() {
       return [
@@ -32,6 +39,9 @@ export default {
     chooseStep: function chooseStep(step) {
       return step.length;
     },
+    leaving: function() {
+     return "Are you sure you want to navigate away?";
+    }
   },
 };
 </script>

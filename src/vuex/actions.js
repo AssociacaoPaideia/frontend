@@ -251,6 +251,37 @@ const actions = {
       }
     });
   },
+  getSubscribers({ commit, state, rootState }) {
+    console.log(rootState)
+    return rootState.apollo.watchQuery({
+      // gql query
+      query: gql`{
+        subscribers{
+          id
+          cpf
+          rg
+          user {
+            firstName
+            lastName
+            isSubscribed
+          }
+        }
+      }`,
+      // Static parameters
+      variables: {},
+    }).subscribe({
+      next(result){
+        debugger
+        if(!result.data){
+          return;
+        }
+        commit(mutation.subscribers, result.data.subscribers);
+      },
+      error(err){
+        debugger
+      }
+    });
+  },
 };
 
 export default actions;
