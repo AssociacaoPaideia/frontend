@@ -5,9 +5,7 @@
       <b-form class="text-white font-weight-bold login-form" @submit.prevent="clicked" @reset="clicked">
             <b-form-group v-for="(file) in this.items" :key="file.type" v-if="isMinor || !file.justMinor" :id="file.type" :label="file.displayName"
                 label-for="Foto">
-                <b-form-file v-if="file.required" required :name="file.type" @change="uploadFile(file, $event.target.files)" accept="image/*" 
-                            placeholder="Escolha uma foto..." :disabled="file.isSending || file.sent" plain class="file-input"></b-form-file>
-                <b-form-file v-if="!file.required" :name="file.type" @change="uploadFile(file, $event.target.files)" accept="image/*" 
+                <b-form-file required :name="file.type" @change="uploadFile(file, $event.target.files)" accept="image/*" 
                             placeholder="Escolha uma foto..." :disabled="file.isSending || file.sent" plain class="file-input"></b-form-file>
                 <b-progress v-if="file.isSending" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
                 <b-form-text v-if="!file.sent && !file.errored" id="inputLiveHelp">
