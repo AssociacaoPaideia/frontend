@@ -5,7 +5,7 @@
       <b-form class="text-white font-weight-bold login-form" @submit.prevent="clicked" @reset="clicked">
             <b-form-group v-for="(file) in this.items" :key="file.type" v-if="isMinor || !file.justMinor" :id="file.type" :label="file.displayName"
                 label-for="Foto">
-                <b-form-file :required="file.required" :name="file.type" @change="uploadFile(file, $event.target.files)" accept="image/*" 
+                <b-form-file required :name="file.type" @change="uploadFile(file, $event.target.files)" accept="image/*" 
                             placeholder="Escolha uma foto..." :disabled="file.isSending || file.sent" plain class="file-input"></b-form-file>
                 <b-progress v-if="file.isSending" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
                 <b-form-text v-if="!file.sent && !file.errored" id="inputLiveHelp">
@@ -35,7 +35,7 @@ export default {
     computed: {
         ...mapGetters(['subscribeSuccess']),
         isAllFilesSent: function () {
-            return this.items.findIndex(file => file.required && (!this.isMinor || file.justMinor) && file.sent === false ) === -1
+            return this.items.findIndex(file => (file.justMinor == this.isMinor) && file.sent === false ) === -1
         }
     },
     data() {
@@ -71,6 +71,15 @@ export default {
                 {
                     type: "PARENT_CPF",
                     displayName: "CPF do Responsável (Caso menor)",
+                    isSending: false,
+                    sent: false,
+                    errored: false,
+                    required: true,
+                    justMinor: true
+                },
+                {
+                    type:  "TERM_RESP", 
+                    displayName: "Termo de Responsabilidade (Caso menor)",
                     isSending: false,
                     sent: false,
                     errored: false,
