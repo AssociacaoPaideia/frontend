@@ -2,7 +2,7 @@
     <b-container>
         <main class="container">
             <h1 class="title">Contato</h1>
-            <h3 class="contact-text">Para entrar em contato, nos mande uma mensagem via facebook ou envie um email para:<br>contato@associacao.org.br</h3>
+            <h3 class="contact-text">Para entrar em contato, nos mande uma mensagem via facebook ou envie um email para:<br>contato@associacaopaideia.org.br</h3>
             <b-row v-if="false">
                 <b-col>
                     <p class="form-header">Entre em contato conosco preenchendo o formulário abaixo. Responderemos o mais breve possível.</p>
