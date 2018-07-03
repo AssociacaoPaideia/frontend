@@ -35,7 +35,6 @@ export default {
     computed: {
         ...mapGetters(['subscribeSuccess']),
         isAllFilesSent: function () {
-            this.isMinor = true
             for (let el of this.items) {
                 if(this.isMinor) {
                     if(!el.sent && el.required) {
@@ -48,7 +47,6 @@ export default {
                 }
             }
             return true
-            
         }
     },
     data() {
