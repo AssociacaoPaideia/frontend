@@ -31,6 +31,10 @@
             label-for="RG" >
             <the-mask class='form-control' required placeholder="999.999.999-9" v-model="form.rg" :mask="['##.###.###-#','###.###.###-#']" />
         </b-form-group>
+        <b-form-group id="fieldsetRg" label="Cartão Cidadão"
+            label-for="cartaoCidadao" >
+            <the-mask class='form-control' required placeholder="9999999999" v-model="form.cartaoCidadao" :mask="['#####################']" />
+        </b-form-group>
         <b-button class='text-white'  type="submit" variant='primary'>Próximo Passo</b-button>
         <b-progress v-if="sent && registrationSuccess === null" :value="100" :max="100" variant="success" striped animated class="mb-2"></b-progress>
           <b-alert dismissible :show="sent && registrationSuccess === false"
@@ -63,6 +67,7 @@ export default {
         phone:'',
         cpf:'',
         rg: '',
+        cartaoCidadao: '',
         userId: ''
       },
     };

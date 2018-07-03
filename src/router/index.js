@@ -30,12 +30,13 @@ Vue.component('HeaderNav', HeaderNav);
 Vue.use(Router);
 
 const checkCanSubscribe = (to, from, next) => {
-    //if(store.getters.isAuthenticated(store.state) && (store.getters.authenticatedUser(store.state) && (!store.getters.authenticatedUser(store.state).isSubscribed || store.getters.authenticatedUser(store.state).isAdmin))) {
-      //next();
-      //return
-    //}
+    if(store.getters.isAuthenticated(store.state) && (store.getters.authenticatedUser(store.state) && (!store.getters.authenticatedUser(store.state).isSubscribed || store.getters.authenticatedUser(store.state).isAdmin))) {
+      next();
+      return
+    }
     next('/');
 }
+
 
 export default new Router({
   routes: [

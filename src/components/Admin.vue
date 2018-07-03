@@ -58,6 +58,10 @@ export default {
             label: "CPF",
             key: "cpf"
         },
+        cartaoCidadao: {
+            label: "Lista de Espera?",
+            key: "cartaoCidadao"
+        },
         listaDeEspera: {
             label: "Lista de Espera?",
             key: "waitlist"

@@ -186,6 +186,7 @@ export default {
     uploadFile: function (file, e){
         debugger
       file.isSending = true
+      file.errored = false
       this.loadPhoto(e).then(img => {
         var fileToSend = {
             type: file.type,

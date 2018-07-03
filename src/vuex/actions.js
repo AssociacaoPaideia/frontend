@@ -96,12 +96,14 @@ const actions = {
         $phone: String!
         $cpf: String!
         $rg: String!
-        $userId: Int!) {
+        $userId: Int!
+        $cartaoCidadao: String!) {
         addSubscriber(birthDate: $birthDate
           birthPlace: $birthPlace
           phone: $phone
           cpf: $cpf
           rg: $rg
+          cartaoCidadao: $cartaoCidadao
           userId: $userId){
             id
         }
@@ -114,6 +116,7 @@ const actions = {
         cpf: subscriber.cpf,
         rg: subscriber.rg,
         userId: subscriber.userId,
+        cartaoCidadao: subscriber.cartaoCidadao
       },
     }).then((result) => {
         if(!result.data.addSubscriber && result.data.addSubscriber.id){
@@ -260,10 +263,12 @@ const actions = {
           id
           cpf
           rg
+          cartaoCidadao
           user {
             firstName
             lastName
             isSubscribed
+            waitListed
           }
         }
       }`,
