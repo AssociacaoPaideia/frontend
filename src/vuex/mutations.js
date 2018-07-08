@@ -49,6 +49,9 @@ const mutations = {
   },
   [mutation.subscribers](state, value){
     state.subscribers = value
+  },
+  [mutation.subscriber](state, value) {
+    state.subscriber = value
   }
 };
 

@@ -1,7 +1,7 @@
 <template>
     <b-container class="table">
         <h1 class="title" v-if="authenticatedUser">Olá, {{authenticatedUser.firstName}}</h1>
-        <b-table :fields="fields" :items="subscribers" caption-top>
+        <b-table striped :fields="fields" :items="subscribers" caption-top>
 
             <template slot="table-caption">
               Inscrições já concluídas.
@@ -17,6 +17,9 @@
             </template>
             <template slot="waitlist" slot-scope="data">
                 {{data.item.user.waitList ? "Sim" : "Não" }}
+            </template>
+            <template slot="details" slot-scope="data">
+                <router-link :to="'/subscriberDetail/' + data.item.id">Ver Detalhes</router-link>
             </template>
         
         </b-table>
@@ -65,6 +68,10 @@ export default {
         listaDeEspera: {
             label: "Lista de Espera?",
             key: "waitlist"
+        },
+        detalhes: {
+            label: "Detalhes",
+            key: "details"
         }
       },
   }

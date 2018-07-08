@@ -37,6 +37,9 @@ const getters = {
   },
   subscribers(state){
     return state.subscribers;
+  },
+  subscriber(state){
+    return state.subscriber;
   }
 };
 

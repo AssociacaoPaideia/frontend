@@ -17,3 +17,4 @@ export const isSubscriptionAvailableError = 'isSubscriptionAvailableError';
 export const isEditalAvailableSuccess = 'isEditalAvailableSuccess';
 export const isEditalAvailableError = 'isEditalAvailableError';
 export const subscribers = 'subscribers';
+export const subscriber = 'subscriber';

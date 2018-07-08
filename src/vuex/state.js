@@ -16,7 +16,8 @@ const state = {
   subscribeActivationError: null,
   isSubscriptionAvailable: false,
   isEditalAvailable: false,
-  subscribers: []
+  subscribers: [],
+  subscriber: null
 };
 
 export default state;

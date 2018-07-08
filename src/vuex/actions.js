@@ -276,7 +276,6 @@ const actions = {
       variables: {},
     }).subscribe({
       next(result){
-        debugger
         if(!result.data){
           return;
         }
@@ -287,6 +286,64 @@ const actions = {
       }
     });
   },
+  getSubscriber({ commit, state, rootState }, subscriberId) {
+    commit(mutation.subscriber, null);
+    return rootState.apollo.watchQuery({
+      // gql query
+      query: gql`query getSubscriber($id: Int){
+        subscribers(id: $id){
+          id
+          cpf
+          rg
+          cartaoCidadao
+          birthDate
+          birthPlace
+          phone
+          user {
+            firstName
+            lastName
+            isSubscribed
+            waitListed
+          }
+        }
+      }`,
+      // Static parameters
+      variables: {id: subscriberId},
+    }).subscribe({
+      next(result){
+        debugger
+        if(!result.data){
+          return;
+        }
+        commit(mutation.subscriber, result.data.subscribers[0]);
+      },
+      error(err){
+        debugger
+      }
+    });
+  },
+  getFile({ commit, state, rootState }, params) {
+    return rootState.apollo.watchQuery({
+      // gql query
+      query: gql`query getFiles($subscriberId: Int!, $type: String){
+        getFiles(subscriberId: $subscriberId, type: $type){
+          type
+          file
+        }
+      }`,
+      // Static parameters
+      variables: {
+        subscriberId: params.subscriberId,
+        type: params.type
+      },
+    }).subscribe({
+      next(result){
+        params.callback(result)
+      }, error(err){
+        params.callback(result)
+      }
+    })
+  }
 };
 
 export default actions;

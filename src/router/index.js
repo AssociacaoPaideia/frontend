@@ -23,6 +23,7 @@ import FilesUpload from '@/components/FilesUpload';
 import Contact from '@/components/Contact';
 import PasswordEmail from "@/components/PasswordEmail";
 import NewPassword from "@/components/NewPassword";
+import SubscriberDetails from "@/components/SubscriberDetails";
 import store from "../vuex/store"
 
 Vue.component('Footer', Footer);
@@ -114,6 +115,11 @@ export default new Router({
       path: '/newpassword',
       name: 'NewPassword',
       component: NewPassword,
+    },{
+      path: '/subscriberDetail/:subscriberId',
+      name: 'SubscriberDetail',
+      component: SubscriberDetails,
+      props: true
     },{
       path: '*',
       name: 'NotFound',
