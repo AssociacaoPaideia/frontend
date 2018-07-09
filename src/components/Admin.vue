@@ -62,7 +62,7 @@ export default {
             key: "cpf"
         },
         cartaoCidadao: {
-            label: "Lista de Espera?",
+            label: "Cartão Cidadão",
             key: "cartaoCidadao"
         },
         listaDeEspera: {

@@ -1,16 +1,17 @@
 <template>
 <b-container>
+    <h2 class="title">{{this.subscriber.user.firstName + " " + this.subscriber.user.lastName }}</h2>
+    <b-img v-if="img" :src="img" fluid alt="Responsive image" class="mobile-img"/>
     <b-row>
-        <b-col>
-            Nome: {{this.subscriber.user.firstName + " " + this.subscriber.user.lastName }} <br/>
-            Tel: {{this.subscriber.phone}} <br/>
-            Local de nascimento: {{this.subscriber.birthPlace}} <br/>
-            CPF: {{this.subscriber.cpf}} <br/>
-            RG: {{this.subscriber.rg}} <br/>
-            Cartão cidadão: {{this.subscriber.cartaoCidadao}} <br/> 
+        <b-col class="subs-info">
+            <p><strong class="subs-title">Tel:</strong> {{this.subscriber.phone}} </p>
+            <p><strong class="subs-title">Local de nascimento:</strong> {{this.subscriber.birthPlace}} </p>
+            <p><strong class="subs-title">CPF:</strong> {{this.subscriber.cpf}} </p>
+            <p><strong class="subs-title">RG:</strong> {{this.subscriber.rg}} </p>
+            <p><strong class="subs-title">Cartão cidadão:</strong> {{this.subscriber.cartaoCidadao}} </p> 
         </b-col>
-        <b-col>
-            <b-img v-if="img" :src="img" fluid alt="Responsive image" />
+        <b-col class="desktop-img-col">
+            <b-img v-if="img" :src="img" fluid alt="Responsive image" class="desktop-img"/>
         </b-col>
     </b-row>
     <b-row>
@@ -151,6 +152,41 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang='scss'>
+@import '../custom-bootstrap.scss';
+.title{
+    margin: 10px 0 20px 0;
+    color: $paideia-purple;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2.3em;
+}
+.subs-title{
+    font-size: 1.3em;
+}
+.subs-info{
+    margin-left: 25px;
+}
+.desktop-img-col{
+    margin: 0 10px 15px 0;
+}
+.desktop-img{
+    height: 230px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.mobile-img{
+    display: none;
+    margin: 10px 0 15px 0;
+}
+@media (max-width: 770px) {
+    .desktop-img-col{
+        display: none;
+    }
+    .mobile-img{
+        display: block;
+    }
+}
 </style>
