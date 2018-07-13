@@ -265,6 +265,7 @@ const actions = {
           rg
           cartaoCidadao
           user {
+            id
             firstName
             lastName
             isSubscribed
@@ -300,6 +301,7 @@ const actions = {
           birthPlace
           phone
           user {
+            id
             firstName
             lastName
             isSubscribed

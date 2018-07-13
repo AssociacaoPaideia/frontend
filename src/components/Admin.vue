@@ -10,7 +10,7 @@
                   {{data.index + 1}}
             </template>
             <template slot="matricula" slot-scope="data">
-                {{(parseInt(data.item.id) + 1697)}}
+                {{(parseInt(data.item.user.id) + 1697)}}
             </template>
             <template slot="fullname" slot-scope="data">
                 {{data.item.user.firstName}} {{data.item.user.lastName}}
