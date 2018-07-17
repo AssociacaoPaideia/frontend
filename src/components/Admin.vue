@@ -1,7 +1,7 @@
 <template>
-    <b-container class="table">
+    <b-container class="table" align-h='center'>
         <h1 class="title" v-if="authenticatedUser">Olá, {{authenticatedUser.firstName}}</h1>
-        <b-table striped :fields="fields" :items="subscribers" caption-top>
+        <b-table align-h='center' striped :fields="fields" :items="subscribers" caption-top>
 
             <template slot="table-caption">
               Inscrições já concluídas.
@@ -12,6 +12,9 @@
             <template slot="matricula" slot-scope="data">
                 {{(parseInt(data.item.user.id) + 1697)}}
             </template>
+            <template slot="email" slot-scope="data">
+                {{data.item.user.email}}
+            </template> 
             <template slot="fullname" slot-scope="data">
                 {{data.item.user.firstName}} {{data.item.user.lastName}}
             </template>
@@ -49,6 +52,10 @@ export default {
             label: "Matricula",
             key: "matricula"
         } ,
+        email: {
+            label: "Email",
+            key: "email"
+        },
         name: {
             label: "Nome",
             key: "fullname"

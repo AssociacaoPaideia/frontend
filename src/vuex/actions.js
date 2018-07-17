@@ -266,6 +266,7 @@ const actions = {
           cartaoCidadao
           user {
             id
+            email
             firstName
             lastName
             isSubscribed
@@ -302,6 +303,7 @@ const actions = {
           phone
           user {
             id
+            email
             firstName
             lastName
             isSubscribed
