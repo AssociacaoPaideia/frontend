@@ -89,7 +89,8 @@ export default {
 <style lang='scss'>
 @import '../custom-bootstrap.scss';
 .table{
-    width: 90%;
+    padding: 0;
+    width: 100%;
     text-align: center;
     margin: auto; 
 }
@@ -104,6 +105,6 @@ export default {
 }
 
 caption{
-    color: gray
+    color: gray;
 }
 </style>
