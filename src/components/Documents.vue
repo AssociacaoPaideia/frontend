@@ -42,12 +42,12 @@
                 </a>
               </center>
           </b-col>
-          <b-col cols="12" md="4" :href="formularioUrl" >
+          <b-col cols="12" md="4" :href="formUrl" >
               <center>
-                <a :href="requerimentoUrl" target="_blank">
+                <a :href="formUrl" target="_blank">
                     <figure>
                         <img align-v="center" src="../assets/formulario.svg" blank rounded blank-color="#fff"  width="100" height="100"><br/>
-                        <figcaption  :href="formularioUrl" class='btn'>AVALIAÇÃO DE REAÇÃO</figcaption>
+                        <figcaption  :href="formUrl" class='btn'>AVALIAÇÃO DE REAÇÃO</figcaption>
                     </figure>
                 </a>
               </center>
@@ -69,7 +69,7 @@ export default {
             requerimentoUrl: "/static/REQUERIMENTO - 2018.pdf",
             editalUrl: "/static/edital_2sem.pdf",
             instrucoesUrl: "/static/informacoes.pdf",
-            formularioUrl: "https://goo.gl/forms/HTaAD0ywkm9tYvxo2",
+            formUrl: "https://goo.gl/forms/HTaAD0ywkm9tYvxo2",
             inscricaoUrl: this.isAuthenticated ? "#/subscribe/basic" : "#/signup",
             canDisplayEdital: false,
         }
