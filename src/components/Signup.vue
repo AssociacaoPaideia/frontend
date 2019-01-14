@@ -59,6 +59,7 @@
     </b-row>
     <b-row v-else-if="registrationSuccess === true">
        <h1> Cadastro feito com sucesso! Realize a ativação da sua conta através do link enviado no e-mail cadastro.</h1>
+       <h2> Atenção: O CADASTRO NÃO VALIDA A INSCRIÇÃO. É NECESSÁRIO SE AUTENTICAR NO SISTEMA PARA RAELIZAR A INSCRIÇÃO.</h2>
     </b-row>
 </b-container>
 </template>
