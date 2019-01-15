@@ -1,7 +1,7 @@
 <template>
   <b-container class='documents'>
       <b-row align-h="center">
-          <h2 style="text-align: center;">Processo Seletivo 2018</h2>
+          <h2 style="text-align: center;">Processo Seletivo 2019</h2>
       </b-row>
       <b-row align-h="center" class='buttons'>
           <b-col cols="12" md="4">
@@ -54,7 +54,7 @@
           </b-col>
           <b-col cols="12" md="4" :href="faq" >
               <center>
-                <a :href="faq" target="_blank">
+                <a :href="faq">
                     <figure>
                         <img align-v="center" src="../assets/help.svg" blank rounded blank-color="#fff"  width="100" height="100"><br/>
                         <figcaption  :href="faq" class='btn'>Perguntas Frequentes</figcaption>
