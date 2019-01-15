@@ -52,6 +52,9 @@ const mutations = {
   },
   [mutation.subscriber](state, value) {
     state.subscriber = value
+  },
+  [mutation.resendSuccess](state, value) {
+    state.resendSuccess = value
   }
 };
 

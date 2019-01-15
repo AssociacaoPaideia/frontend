@@ -27,14 +27,17 @@
               <b-nav-item href="#/news">Notícias</b-nav-item>
               <b-nav-item href="#/contato">Contato</b-nav-item>
               <b-nav-item href="#/signup" @click="registerClicked" v-if="(isAuthenticated && authenticatedUser && authenticatedUser.isAdmin) || (!isAuthenticated && isSubscriptionAvailable)" >Registrar-se</b-nav-item>
-              <b-nav-item href="#/subscribe/terms" v-if="(isAuthenticated && authenticatedUser && authenticatedUser.isAdmin) || (isAuthenticated && authenticatedUser && !authenticatedUser.isSubscribed && isSubscriptionAvailable)" >Inscrição Cursinho 2018</b-nav-item>
-              <b-nav-item href="#" disabled v-if="authenticatedUser && authenticatedUser.isSubscribed" >Inscrição Cursinho 2018 realizada</b-nav-item>
+              <b-nav-item href="#/subscribe/terms" v-if="(isAuthenticated && authenticatedUser && authenticatedUser.isAdmin) || (isAuthenticated && authenticatedUser && !authenticatedUser.isSubscribed && isSubscriptionAvailable)" >Inscrição Cursinho 2019</b-nav-item>
+              <b-nav-item href="#" disabled v-if="authenticatedUser && authenticatedUser.isSubscribed" >Inscrição Cursinho 2019 realizada</b-nav-item>
               <b-nav-item href="#/admin" v-if="(isAuthenticated && authenticatedUser && authenticatedUser.isAdmin)" >Administrador</b-nav-item>
+              <b-nav-item href="#/faq">Perguntas Frequentes <b-badge>Novo</b-badge></b-nav-item>
             </b-navbar-nav>
 
             <b-navbar-nav class="ml-auto">
               <b-nav-item-dropdown v-if="isAuthenticated && authenticatedUser" :text="'Olá, ' +  authenticatedUser.firstName +'!'" right>
-                <b-dropdown-item href="#">Sair</b-dropdown-item> 
+                <b-dropdown-item>
+                     <b-button style="width: 100%" class='text-white' type="button" variant="primary" @click.prevent="logout">Sair</b-button>
+                  </b-dropdown-item> 
               </b-nav-item-dropdown>
               <b-nav-item-dropdown v-if="!isAuthenticated" text="Acessar sua conta" right>
                  <Login />
@@ -72,6 +75,10 @@ export default {
       if(this.registrationSuccess){        
         this.resetRegistration();
       }
+    },
+    logout() {
+      localStorage.removeItem("token");
+      location.reload();
     }
   }
 };

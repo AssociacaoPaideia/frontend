@@ -52,12 +52,12 @@
                 </a>
               </center>
           </b-col>
-          <b-col cols="12" v-if="false" md="4" :href="formUrl" >
+          <b-col cols="12" md="4" :href="faq" >
               <center>
-                <a :href="formUrl" target="_blank">
+                <a :href="faq" target="_blank">
                     <figure>
-                        <img align-v="center" src="../assets/formulario.svg" blank rounded blank-color="#fff"  width="100" height="100"><br/>
-                        <figcaption  :href="formUrl" class='btn'>Perguntas Frequentes</figcaption>
+                        <img align-v="center" src="../assets/help.svg" blank rounded blank-color="#fff"  width="100" height="100"><br/>
+                        <figcaption  :href="faq" class='btn'>Perguntas Frequentes</figcaption>
                     </figure>
                 </a>
               </center>
@@ -81,6 +81,7 @@ export default {
             instrucoesUrl: "/static/informacoes.pdf",
             formUrl: "https://goo.gl/forms/HTaAD0ywkm9tYvxo2",
             inscricaoUrl: this.isAuthenticated ? "#/subscribe/basic" : "#/signup",
+            faq: "#/faq",
             canDisplayEdital: false,
         }
     }

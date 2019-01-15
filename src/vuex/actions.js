@@ -347,7 +347,29 @@ const actions = {
         params.callback(result)
       }
     })
-  }
+  },
+  sendCode({ commit, state, rootState }, mail) {
+    console.log(rootState)
+    return rootState.apollo.watchQuery({
+      // gql query
+      query: gql`query Recover($email: String!) {
+        recover(email: $email)
+      }`,
+      // Static parameters
+      variables: {
+        email: mail,
+      },
+    }).subscribe({
+      next(result) {
+        commit(mutation.resendSuccess, true)
+      },
+      error(error){
+        // eslint-disable-next-line
+        commit(mutation.resendSuccess, false)
+        console.log('there was an error sending the query', error);
+      },
+    });
+  },
 };
 
 export default actions;

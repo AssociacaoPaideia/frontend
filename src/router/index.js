@@ -7,6 +7,7 @@ import WizardProcess from '@/components/WizardProcess';
 import BasicInfo from '@/components/BasicInfo';
 import AdditionalInfo from '@/components/AdditionalInfo';
 import SocialEco from '@/components/SocialEco';
+import Faq from '@/components/Faq';
 import Signup from '@/components/Signup';
 import HeaderNav from '@/components/HeaderNav';
 import Footer from '@/components/Footer';
@@ -120,6 +121,10 @@ export default new Router({
       name: 'SubscriberDetail',
       component: SubscriberDetails,
       props: true
+    },{
+      path: '/faq',
+      name: 'FAQ',
+      component: Faq
     },{
       path: '*',
       name: 'NotFound',

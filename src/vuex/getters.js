@@ -40,6 +40,9 @@ const getters = {
   },
   subscriber(state){
     return state.subscriber;
+  },
+  resendSuccess(state){
+    return state.resendSuccess;
   }
 };
 

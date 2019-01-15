@@ -13,14 +13,25 @@
                   placeholder="Digite sua senha novamente" 
                   id="repassword"
                   required></b-form-input>      
-            <b-button type="submit" class="mail-submit">Enviar</b-button>
+            <b-button type="submit" class="mail-submit" @click.prevent="send">Enviar</b-button>
             </b-form>
         </main>
     </b-container>
 </template>
 <script>
 export default {
-    
+    computed: {
+    },
+    data() {
+        return {
+            email: ''
+        }
+    },
+    methods: {
+        send() {
+            this.recoverPassword(email);
+        }
+    }
 }
 </script>
 

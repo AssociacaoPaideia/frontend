@@ -17,7 +17,8 @@ const state = {
   isSubscriptionAvailable: false,
   isEditalAvailable: false,
   subscribers: [],
-  subscriber: null
+  subscriber: null,
+  resendSuccess: null
 };
 
 export default state;

@@ -75,6 +75,7 @@ export default {
 @import '../custom-bootstrap.scss';
 .quote{
     font-weight: bold;
+    font-style: italic;
 }
 p{
     text-align: justify;
